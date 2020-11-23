@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="822b063c-72dd-4b28-a5e4-cd63ed3fb49b" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="paibaApp" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendEmailJob.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Jobs/SendEmailJob.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="729">
+              <caret line="33" column="65" lean-forward="false" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="65" />
+              <folding>
+                <element signature="e#28#55#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobQueueController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JobQueueController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="574">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="e#40#85#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendEmailAble.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Mail/SendEmailAble.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/mail/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewCustomerHasRegisteredEvent.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Events/NewCustomerHasRegisteredEvent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WelcomeNewCustomerListener.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Listeners/WelcomeNewCustomerListener.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding>
+                <element signature="e#33#60#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>adPostPrice</find>
+      <find>register-client</find>
+      <find>viewAuthorAllAds</find>
+      <find>dropdown-btn</find>
+      <find>filterAds</find>
+      <find>login to</find>
+      <find>locationField</find>
+      <find>ad-post</find>
+      <find>update(</find>
+      <find>my</find>
+      <find>myAllPost</find>
+      <find>price-negotiation</find>
+      <find>single</find>
+      <find>chat</find>
+      <find>$getChatOfferData</find>
+      <find>getChatDataByPerson</find>
+      <find>You may like</find>
+      <find>toLowerCase</find>
+      <find>CurrentUser</find>
+      <find>chatSubmit</find>
+      <find>load-chat-data-by-user</find>
+      <find>#chatSubmit</find>
+      <find>showAdsByAdPriceTitle</find>
+      <find>getNavSubCategoryData</find>
+      <find>ads/</find>
+      <find>$category</find>
+      <find>catLink</find>
+      <find>get('/</find>
+      <find>categoryWiseAds</find>
+      <find>dataloa`</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/load-ans-replay.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/AnswerReplayController.php" />
+        <option value="$USER_HOME$/Desktop/index.html" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_09_30_103535_create_order_prices_table.php" />
+        <option value="$PROJECT_DIR$/app/Models/OrderPrice.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/app.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/app/Models/AdPost.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/OrderPriceController.php" />
+        <option value="$PROJECT_DIR$/app/Models/Order.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_09_30_101129_create_orders_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/OrderController.php" />
+        <option value="$PROJECT_DIR$/public/frontend/css/custom.css" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_12_31_210655_create_price_negotiations_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/tag-ads.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/price-ads.blade.php" />
+        <option value="$PROJECT_DIR$/public/frontend/css/style.css" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/adPost/edit-old.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/search-nav-subcategory.blade.php" />
+        <option value="$PROJECT_DIR$/routes/frontendRoute.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/search-nav-location.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/location-area.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/sidenave.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/ClientRegistrationController.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/home/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/author-all-ads.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/adPost/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/AdPostController.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/adPost/my-ads.blade.php" />
+        <option value="$PROJECT_DIR$/app/Models/PriceNegotiation.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/PriceNegotiationController.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/load-chat-replay-data.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/ad/details.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/AdController.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/_partials/header.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/master.blade.php" />
+        <option value="$PROJECT_DIR$/app/CustomFacades/DataLoadController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/PaibaController.php" />
+        <option value="$PROJECT_DIR$/app/Jobs/TestJob.php" />
+        <option value="$PROJECT_DIR$/app/Jobs/SendEmailJob.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Events/NewCustomerHasRegisteredEvent.php" />
+        <option value="$PROJECT_DIR$/app/Mail/SendEmailAble.php" />
+        <option value="$PROJECT_DIR$/resources/views/mail/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/WelcomeNewCustomerListener.php" />
+        <option value="&lt;7f4321a5-153b-4db7-adf7-a5c9c7808f19&gt;/paibaaAppDev/.env" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/JobQueueController.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="554" />
+    <option name="y" value="-23" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="remote&#9;ACTION&#9;ActivateRemoteHostToolWindow&#10;remote host&#9;ACTION&#9;WebDeployment.BrowseServers" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\paibaApp\app\Http\Controllers\Frontend" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\paibaApp\resources\views\frontend\ad" />
+      <recent name="D:\xampp\htdocs\paibaApp\public\frontend" />
+      <recent name="D:\xampp\htdocs\paibaApp\app\Http\Controllers\Frontend" />
+      <recent name="D:\xampp\htdocs\paibaApp\resources\views\backend\ad" />
+      <recent name="D:\xampp\htdocs\paibaApp\resources\views\backend\ad-location" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="822b063c-72dd-4b28-a5e4-cd63ed3fb49b" name="Default" comment="" />
+      <created>1593446401022</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593446401022</updated>
+      <workItem from="1593446402350" duration="598000" />
+      <workItem from="1593476946927" duration="7840000" />
+      <workItem from="1593510885263" duration="5143000" />
+      <workItem from="1593564468055" duration="14198000" />
+      <workItem from="1593595958612" duration="3038000" />
+      <workItem from="1593621606983" duration="6754000" />
+      <workItem from="1593655044878" duration="725000" />
+      <workItem from="1593783165995" duration="238000" />
+      <workItem from="1593827955409" duration="78000" />
+      <workItem from="1593854733946" duration="7868000" />
+      <workItem from="1593928355608" duration="10797000" />
+      <workItem from="1593994715044" duration="11303000" />
+      <workItem from="1594023377365" duration="8953000" />
+      <workItem from="1594168680331" duration="4792000" />
+      <workItem from="1594225672242" duration="1523000" />
+      <workItem from="1594343834007" duration="8249000" />
+      <workItem from="1594434737581" duration="755000" />
+      <workItem from="1594455557952" duration="7514000" />
+      <workItem from="1594559924916" duration="9437000" />
+      <workItem from="1594705049420" duration="1596000" />
+      <workItem from="1594770285734" duration="2717000" />
+      <workItem from="1594782671504" duration="10805000" />
+      <workItem from="1594862371415" duration="1979000" />
+      <workItem from="1594872385466" duration="6351000" />
+      <workItem from="1594942619112" duration="4215000" />
+      <workItem from="1595003151173" duration="814000" />
+      <workItem from="1595031589354" duration="5232000" />
+      <workItem from="1595134061583" duration="1480000" />
+      <workItem from="1595150868547" duration="7397000" />
+      <workItem from="1595217879160" duration="6691000" />
+      <workItem from="1595235183811" duration="3709000" />
+      <workItem from="1595377253293" duration="19087000" />
+      <workItem from="1595412499826" duration="5477000" />
+      <workItem from="1595484892827" duration="6197000" />
+      <workItem from="1595605559912" duration="1124000" />
+      <workItem from="1595644512890" duration="3356000" />
+      <workItem from="1595657529174" duration="4845000" />
+      <workItem from="1595671770006" duration="4758000" />
+      <workItem from="1595809496123" duration="3529000" />
+      <workItem from="1595831199425" duration="1300000" />
+      <workItem from="1595949856884" duration="1938000" />
+      <workItem from="1595996004405" duration="9691000" />
+      <workItem from="1596039658427" duration="4319000" />
+      <workItem from="1596079532647" duration="4284000" />
+      <workItem from="1596333988706" duration="609000" />
+      <workItem from="1596500748710" duration="656000" />
+      <workItem from="1596865551211" duration="729000" />
+      <workItem from="1596882286938" duration="3398000" />
+      <workItem from="1596980622898" duration="656000" />
+      <workItem from="1597588412806" duration="200000" />
+      <workItem from="1597594560574" duration="12000" />
+      <workItem from="1598518554001" duration="3089000" />
+      <workItem from="1598584455098" duration="3522000" />
+      <workItem from="1598755601649" duration="2902000" />
+      <workItem from="1598839603731" duration="2874000" />
+      <workItem from="1598925725158" duration="8591000" />
+      <workItem from="1598953273773" duration="3882000" />
+      <workItem from="1598967161224" duration="1555000" />
+      <workItem from="1598975316766" duration="37000" />
+      <workItem from="1599186143522" duration="6413000" />
+      <workItem from="1599272383270" duration="4740000" />
+      <workItem from="1599323315838" duration="11677000" />
+      <workItem from="1599473754888" duration="2991000" />
+      <workItem from="1599571970277" duration="28000" />
+      <workItem from="1599704991760" duration="2149000" />
+      <workItem from="1599733110444" duration="1696000" />
+      <workItem from="1599755065813" duration="637000" />
+      <workItem from="1601394216983" duration="715000" />
+      <workItem from="1601429728243" duration="5863000" />
+      <workItem from="1601459699115" duration="1467000" />
+      <workItem from="1601462920567" duration="825000" />
+      <workItem from="1601516592304" duration="4938000" />
+      <workItem from="1601533413738" duration="1563000" />
+      <workItem from="1601565993904" duration="3666000" />
+      <workItem from="1601692816303" duration="53000" />
+      <workItem from="1601783738959" duration="3963000" />
+      <workItem from="1602241825769" duration="59000" />
+      <workItem from="1602292760819" duration="11101000" />
+      <workItem from="1602390961848" duration="129000" />
+      <workItem from="1602397815045" duration="1632000" />
+      <workItem from="1602408450008" duration="225000" />
+      <workItem from="1602465320215" duration="11868000" />
+      <workItem from="1602495939598" duration="3965000" />
+      <workItem from="1602640033720" duration="1887000" />
+      <workItem from="1602723449248" duration="9477000" />
+      <workItem from="1602926783932" duration="3160000" />
+      <workItem from="1602981607305" duration="8539000" />
+      <workItem from="1602994664091" duration="5503000" />
+      <workItem from="1603067319257" duration="129000" />
+      <workItem from="1603067569012" duration="25000" />
+      <workItem from="1603078370839" duration="5721000" />
+      <workItem from="1603122499665" duration="1300000" />
+      <workItem from="1603189302121" duration="3943000" />
+      <workItem from="1603240690177" duration="10781000" />
+      <workItem from="1603334319972" duration="2576000" />
+      <workItem from="1603356793849" duration="3120000" />
+      <workItem from="1603381036783" duration="717000" />
+      <workItem from="1603420560381" duration="636000" />
+      <workItem from="1603472665554" duration="1963000" />
+      <workItem from="1603503676462" duration="3141000" />
+      <workItem from="1603556878386" duration="5656000" />
+      <workItem from="1603584922176" duration="5231000" />
+      <workItem from="1604329839786" duration="73000" />
+      <workItem from="1606061512281" duration="2692000" />
+      <workItem from="1606096450514" duration="78000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="424117000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24167562" sideWeight="0.48584905" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15448113" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2717508" sideWeight="0.5141509" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/sidenave.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/ClientRegistrationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="133" column="29" lean-forward="false" selection-start-line="133" selection-start-column="29" selection-end-line="133" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="737">
+          <caret line="132" column="26" lean-forward="false" selection-start-line="132" selection-start-column="26" selection-end-line="132" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/AdPost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/my-account/my-profile.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/home/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2916">
+          <caret line="108" column="18" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="108" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/author-all-ads.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="257" column="12" lean-forward="true" selection-start-line="257" selection-start-column="12" selection-end-line="257" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/adPost/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="393" column="26" lean-forward="false" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/AdPostAreaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/AdPostController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/adPost/my-ads.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="88" column="142" lean-forward="false" selection-start-line="88" selection-start-column="142" selection-end-line="88" selection-end-column="142" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_12_31_210655_create_price_negotiations_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/PriceNegotiation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/blog-details.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="91" column="53" lean-forward="false" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/details.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="962" column="28" lean-forward="false" selection-start-line="962" selection-start-column="28" selection-end-line="962" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/load-chat-replay-data.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/PriceNegotiationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/AdController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2241">
+          <caret line="100" column="5" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="104" column="63" lean-forward="false" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/_partials/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="131" column="206" lean-forward="true" selection-start-line="131" selection-start-column="206" selection-end-line="131" selection-end-column="206" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/ad/price-ads.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-243">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdPostController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="186" column="7" lean-forward="true" selection-start-line="186" selection-start-column="7" selection-end-line="186" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/DataLoadServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/frontendRoute.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="2" column="81" lean-forward="false" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="236" column="17" lean-forward="false" selection-start-line="236" selection-start-column="9" selection-end-line="236" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Brand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/PaibaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/CustomFacades/DataLoadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_10_24_231525_create_jobs_table.php" />
+    <entry file="file://$PROJECT_DIR$/app/Jobs/TestJob.php" />
+    <entry file="file://$PROJECT_DIR$/app/CustomFacades/DataLoadFacade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="18" column="1" lean-forward="false" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Listeners/SendEmailVerificationNotification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/SendEmailJob.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="33" column="65" lean-forward="false" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="65" />
+          <folding>
+            <element signature="e#28#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="63" column="81" lean-forward="true" selection-start-line="63" selection-start-column="81" selection-end-line="63" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/mail/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Events/NewCustomerHasRegisteredEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/WelcomeNewCustomerListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#33#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Mail/SendEmailAble.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JobQueueController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#40#85#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,1 @@
+<input type="number" min="1" max="{{$max+1}}" value="{{$max}}" name="serial_num" class="form-control" placeholder="Serial" required>
