@@ -61,6 +61,7 @@ Route::middleware(['auth','disablepreventback','admin'])->group(function () {
     Route::resource('menu','MenuController')->middleware('permission:menu');
     Route::resource('sub-menu','SubMenuController')->middleware('permission:menu');
     Route::resource('sub-sub-menu','SubSubMenuController')->middleware('permission:menu');
+    
     Route::get('page-menu','MenuController@page')->middleware('permission:menu');
     Route::resource('pages','PagesController')->middleware('permission:pages');
     Route::get('/logout','IndexController@logout');

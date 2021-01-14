@@ -283,7 +283,9 @@
 
                                 <div class="row">
                                     <span class="col-md-2"></span>
-                                    <button class="col-md-4 update_btn mt-2 text-capitalize" type="submit" value="button" id="postSubmit" onclick="return ValidateCharacterLength();">Post Your Ad</button>
+                                    <button class="col-md-4 update_btn mt-2 text-capitalize" type="submit" value="button" id="postSubmit"
+                                     
+                                    ">Post Your Ad</button>
 
                                     <span>{{$errors}}</span>
                                 </div>

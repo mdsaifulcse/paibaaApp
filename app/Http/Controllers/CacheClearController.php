@@ -13,6 +13,7 @@ class CacheClearController extends Controller
         Artisan::call('cache:clear');
         Artisan::call('view:clear');
         Artisan::call('route:cache');
+        Artisan::call('config:cache');
         return redirect('/')->with('success','Successfully Clear Cache facade value.');
     }
 

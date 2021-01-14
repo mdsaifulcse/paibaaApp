@@ -26,7 +26,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <? $i=1; ?>
+                            <?php $i=1; ?>
                             @foreach($allData as $data)
                                 <tr>
                                     <td>{{$i++}}</td>
