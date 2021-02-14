@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'permission' => \Yajra\Acl\Middleware\PermissionMiddleware::class,
         'role' => \Yajra\Acl\Middleware\RoleMiddleware::class,
         'disablepreventback' => \App\Http\Middleware\DisablePreventBack::class,
+        'https' => \App\Http\Middleware\RedirectHttps::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'client' => \App\Http\Middleware\ClientMiddleware::class,
 

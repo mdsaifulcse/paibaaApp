@@ -100,7 +100,7 @@ class MyProfileController extends Controller
         }
 
         if($bug==0){
-            return redirect()->back()->with('success','Brand Successfully Updated');
+            return redirect()->back()->with('success','Your Profile Successfully Updated');
            // return redirect()->back()->with('success','Brand Successfully Updated');
         }elseif($bug==1062){
             return redirect()->back()->with('error','The name has already been taken.');

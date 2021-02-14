@@ -12,6 +12,14 @@
 @endsection
 
 @section('content')
+    <style>
+        .nounderline{
+            text-decoration: none !important;
+        }
+        .badge-info{
+            background-color: #8BC34A;
+        }
+    </style>
 
     <div class="iner_breadcrumb p-t-0 p-b-0">
         <div class="container">
@@ -19,10 +27,10 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{URL::to('/')}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{URL::to('ads/bangladesh/'.$adDetails->postCategory->link)}}">{{$adDetails->postCategory->category_name}}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
+                    {{--<li class="breadcrumb-item active" aria-current="page">
                         <a href="{{URL::to('ads/bangladesh/'.$adDetails->postCategory->link.'?subcategory='.$adDetails->adSubCategory->first()->id)}}">{{$adDetails->adSubCategory->first()->sub_category_name}}
                         </a>
-                    </li>
+                    </li>--}}
                     <li class="breadcrumb-item " aria-current="page">{{$adDetails->title}}</li>
                 </ul>
             </nav>
@@ -61,12 +69,43 @@
                         <i class="fa fa-map-marker them-color"></i>
                         <?php
 
-                        $allLocations=$adDetails->adLocation->pluck('location_name')->toArray();
-                        foreach ($allLocations as $locationData){
-                            echo $locationData.' , ';
-                        }?>
+                        $allLocations=$adDetails->adLocation->pluck('url')->toArray();
+                        ?>
+
                     </p>
                     <br>
+                    Location:
+                    @forelse($allLocations as $allLocation)
+
+                        <a href="{{URL::to('ads/'."$allLocation".'/'.$adDetails->postCategory->link)}}" class="nounderline">
+                            <span class="badge badge-secondary">{{$allLocation}}</span>
+                        </a>
+
+                    @empty
+                        <span>No Category</span>
+                    @endforelse
+
+
+                    <hr>
+                    Category:
+                        @forelse($adDetails->adSubCategory as $subCatName)
+                            <a href="{{URL::to('ads/bangladesh/'.$adDetails->postCategory->link.'?subcategory='.$subCatName->id)}}" class="nounderline">
+                                <span class="badge badge-secondary">{{$subCatName->sub_category_name}}</span>
+                            </a>
+                        @empty
+                            <span>No Category</span>
+                            @endforelse
+
+                    <hr>
+                    Tags:
+                        @forelse($tags as $tag)
+                            <a href="{{URL::to('/tag/'.str_replace(' ','-',$tag))}}" class="nounderline">
+                                <span class="badge badge-secondary">{{$tag}}</span>
+                            </a>
+
+                        @empty
+                            <span>No Tag</span>
+                        @endforelse
                 </div>
             @endif
 
@@ -87,7 +126,7 @@
                                         if ($adPostPrice->is_negotiable==1){$readOnly='true'; }else{$readOnly='false';}
                                         ?>
                                             <span class="rend-blog-price-type">
-                                                <a href="{{URL::to('price/'.$adPostPrice->price_title)}}" class="order-price-title">
+                                                <a href="{{URL::to('price/'.$adPostPrice->price_title.'?cat='.$adDetails->postCategory->link)}}" class="order-price-title">
                                                     {{$adPostPrice->price_title}}
 </a>
                                             </span>
@@ -131,7 +170,7 @@
                                         @if(!Auth::check())
                                             <a href="{{URL::to('/login?'.'od_rf='.Request::path())}}" class="price-request"> Request </a>
                                         @elseif(Auth::check() && Auth::user()->id==$adDetails->user_id)
-                                            <span>This is your Ad</span>
+                                            <span>This is your Ad </span>
 
                                         @elseif(!Auth::check() || empty($priceNegotiation))
 
@@ -144,7 +183,7 @@
 
                                             @if(!Auth::check())
                                             &nbsp; <a href="{{URL::to('/login?'.'od_rf='.Request::path())}}" class="price-request" title="Click here to {{$adDetails->postCategory->order_label}}" > {{$adDetails->postCategory->order_label}}</a>
-                                                @else
+                                            @elseif(Auth::check() && Auth::user()->id!=$adDetails->user_id)
                                                 <a href="javascript:void(0)" class="price-request" title="Click here to {{$adDetails->postCategory->order_label}}" onclick="makeOrder()" > {{$adDetails->postCategory->order_label}}</a>
                                                 @endif
                                     </li>
@@ -154,28 +193,26 @@
                                 @endif
                         </div>
 
-                        <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
-                            <li class="meetup"><i class="fa fa-handshake-o" aria-hidden="true"></i> Meetup</li>
-                        </ul>
-                        <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
-                            <li class="meetup"><i class="fa fa-map-marker them-color"></i> {{$adDetails->address}}</li>
-                        </ul>
 
                     </div>
-                    <hr>
+
                     <div class="description_box">
                         <?php echo $adDetails->description;?>
                     </div>
-
-                    <hr>Tags:
-                    @if(count($tags)>0)
-
-                    @foreach($tags as $tag)
-                        <a href="{{URL::to('/tag/'.str_replace(' ','-',$tag))}}">
-                            <span class="badge badge-secondary">{{$tag}}</span>
-                        </a>
-                    @endforeach
-                    @endif
+                    <hr>
+                    <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
+                        <li class="meetup"><i class="fa fa-handshake-o" aria-hidden="true"></i> Phone &nbsp; </li>
+                    </ul>
+                    <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
+                        <li class="meetup"><i class="fa fa-mobile them-color"></i> {{$adDetails->contact}}</li>
+                    </ul>
+                    <br>
+                    <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
+                        <li class="meetup"><i class="fa fa-handshake-o" aria-hidden="true"></i> Meetup</li>
+                    </ul>
+                    <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
+                        <li class="meetup"><i class="fa fa-map-marker them-color"></i> {{$adDetails->address}}</li>
+                    </ul>
 
 
                 <!--Request Start Modal -->
@@ -424,7 +461,7 @@
     </section>
 
 
-
+<hr>
     <section class="description">
         <div class="container">
 
@@ -438,8 +475,6 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <!-- Description area -->
-                    <hr>
                     <h5 class=" badge-info p-1"> Comment</h5>
 
                     <section class="iner_breadcrumb p-t-20 p-b-20">
@@ -543,15 +578,14 @@
                         <!--  Chat Start -->
                         {{-- && !empty($currentChatUser) && count($getChatReplayData)>0--}}
                         @if(Auth::check() && (count($getChatReplayData)>0 || count($getChatOfferData)>0))
-                            <hr>
-                            <h6 class="title badge-info p-1 text-warning "> <i class="fa fa-comments-o" aria-hidden="true"></i> Chat</h6>
+                            <h6 class=" badge-info p-1 "> <i class="fa fa-comments-o" aria-hidden="true"></i> Chat</h6>
                                 <div class="card  bg-dark text-white">
                                     <div class="card-header">
                                         <div>
 
                                             @if(count($offerUsers)>0)
                                                 <div class="">
-                                                    <label class="control-label text-info">Change Chat Partner</label>
+                                                    <label class="control-label price-request"> Chat Partner</label>
 
                                                     {{Form::select('user_id',$offerUsers,$currentChatUser->id,['id'=>'CurrentUser','class'=>'form-control','required'=>true])}}
                                                 </div>
@@ -738,12 +772,10 @@
             <!-- Row  -->
             <div class="row">
                 <div class="col-md-3  m-b-10">
-                    <h5 class=" badge-success p-1">You might also like</h5>
+                    <h5 class=" price-request p-1">You might also like</h5>
                 </div>
             </div>
             <!-- Row  -->
-
-
 
             <div class="row">
                 <div class="col-md-10 col-lg-10">

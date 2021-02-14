@@ -37,43 +37,6 @@
 
                                     <input id="categoryId" type="hidden" name="category_id" value="<?php echo e($categoryInfo->id); ?>">
 
-                                    <div class="row form-group <?php echo e($errors->has('title') ? ' has-error' : ''); ?>">
-                                        <label for="title" class="col-md-2 label-title">Title <sup class=" text-danger">*</sup> </label>
-
-                                        <div class="col-md-10">
-                                            <?php echo e(Form::text('title',$value=$adData->title,['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Short title will be more useful to find your ad',
-                                        'required'=>true,'data-error'=>':Please enter Ad title'])); ?>
-
-
-                                            <?php if($errors->has('title')): ?>
-                                                <span class="help-block">
-                                            <strong class="text-danger"><?php echo e($errors->first('title')); ?></strong>
-                                        </span>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="row paddingTop15">
-                                        <label class="col-md-2"> Sub-Category <sup class="text-danger">*</sup></label>
-
-                                        <div class="col-md-10">
-                                            <?php echo e(Form::text('sub_category_name[]',$value=implode(',',$existPostSubCats),['id'=>'subCategoryField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your sub-category and press Enter','required'=>false])); ?>
-
-
-                                            <ul id="subCategoryFieldUl"></ul>
-                                            <span class="subCategoryError text-danger"> </span>
-                                            <span class="taging-notes"> Type your sub-category and press Enter. Max(5) </span>
-                                            <hr>
-
-                                            <?php if($errors->has('sub_category_name')): ?>
-                                                <span class="help-block">
-                                        <strong class="text-danger"><?php echo e($errors->first('sub_category_name')); ?></strong>
-                                    </span>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-
-
                                     <div class="row paddingTop15">
                                         <label class="col-md-2"> Location <sup class="text-danger">*</sup></label>
 
@@ -93,7 +56,58 @@
                                     </div>
 
 
+                                    <?php if($categoryInfo->post_type==2): ?>
+                                        <div class="row form-group">
+                                            <label class="col-md-2"> Language <sup class="text-danger help-block with-errors">*</sup></label>
 
+                                            <div class="col-md-10">
+                                                <?php echo e(Form::select('lang',['English'=>'English','বাংলা'=>'বাংলা'],$adData->lang,['class'=>'form-control','id'=>'lang','placeholder'=>'Select language','required'=>true])); ?>
+
+
+                                                <?php if($errors->has('lang')): ?>
+                                                    <strong class="text-danger"><?php echo e($errors->first('lang')); ?></strong>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+
+
+                                    <div class="row <?php echo e($errors->has('title') ? ' has-error' : ''); ?>">
+                                        <label for="title" class="col-md-2 label-title">Title <sup class=" text-danger">*</sup> </label>
+
+                                        <div class="col-md-10">
+                                            <?php echo e(Form::text('title',$value=$adData->title,['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Short title will be more useful to find your ad',
+                                        'required'=>true,'data-error'=>':Please enter Ad title'])); ?>
+
+
+                                            <?php if($errors->has('title')): ?>
+                                                <span class="help-block">
+                                            <strong class="text-danger"><?php echo e($errors->first('title')); ?></strong>
+                                        </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="row paddingTop15">
+                                        <label class="col-md-2"> Category <sup class="text-danger">*</sup></label>
+
+                                        <div class="col-md-10">
+                                            <?php echo e(Form::text('sub_category_name[]',$value=implode(',',$existPostSubCats),['id'=>'subCategoryField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your category and press Enter','required'=>false])); ?>
+
+
+                                            <ul id="subCategoryFieldUl"></ul>
+                                            <span class="subCategoryError text-danger"> </span>
+                                            <span class="taging-notes"> Type your category and press Enter. Max(5) </span>
+                                            <hr>
+
+                                            <?php if($errors->has('sub_category_name')): ?>
+                                                <span class="help-block">
+                                        <strong class="text-danger"><?php echo e($errors->first('sub_category_name')); ?></strong>
+                                    </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
 
 
                                     <div class="row form-group <?php echo e($errors->has('photo_one') ? ' has-error' : ''); ?>  <?php echo e($errors->has('photo_two') ? ' has-error' : ''); ?>  <?php echo e($errors->has('photo_three') ? ' has-error' : ''); ?>  <?php echo e($errors->has('photo_four') ? ' has-error' : ''); ?> add-image">
@@ -152,15 +166,29 @@
 
 
                                     <?php if($categoryInfo->post_type==1): ?>
+
                                         <div class="row form-group">
-                                            <label class="col-md-2">Meetup <sup class="text-danger help-block with-errors">*</sup></label>
+                                            <label class="col-md-2" title="Phone number">Phone <sup class="text-danger with-errors">*</sup></label>
                                             <div class="col-md-10">
-                                                <?php echo e(Form::text('address',$value=$adData->address,['data-error'=>':Specific Address is Required','class'=>'form-control type-pass','placeholder'=>'Specific Address ','required'=>true])); ?>
+                                                <?php echo e(Form::text('contact',$value=old('contact',$adData->contact),['class'=>'form-control type-pass','placeholder'=>'Phone number here','required'=>true])); ?>
+
+                                                <?php if($errors->has('contact')): ?>
+                                                    <span class="help-block">
+                                            <strong class="text-danger"><?php echo e($errors->first('contact')); ?></strong>
+                                        </span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <label class="col-md-2">Meetup</label>
+                                            <div class="col-md-10">
+                                                <?php echo e(Form::text('address',$value=$adData->address,['class'=>'form-control type-pass','placeholder'=>'Specific Address ','required'=>false])); ?>
 
                                                 <?php if($errors->has('address')): ?>
                                                     <span class="help-block">
-                                            <strong class="text-danger"><?php echo e($errors->first('address')); ?></strong>
-                                        </span>
+                                                        <strong class="text-danger"><?php echo e($errors->first('address')); ?></strong>
+                                                    </span>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
@@ -168,7 +196,7 @@
 
                                     <?php if($categoryInfo->post_type==1): ?> <!--hide when category is special=blog -->
                                     <div class="row form-group  <?php echo e($errors->has('price') ? ' has-error' : ''); ?> select-price">
-                                        <label class="col-sm-2 label-title"><?php if($categoryInfo->category_name=='Need'): ?> Amount <?php else: ?> Price <?php endif; ?> <sup class="text-danger">*</sup></label>
+                                        <label class="col-sm-2 label-title"><?php if($categoryInfo->category_name=='Need'): ?> Pay <?php else: ?> Price <?php endif; ?> <sup class="text-danger">*</sup></label>
                                         <div class="col-sm-10">
                                             <div class="field_wrapper">
                                                 <?php if(count($adData->adPostPrice)>0): ?>

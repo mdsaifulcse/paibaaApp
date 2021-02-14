@@ -113,15 +113,15 @@
                                 </form>
 
                                 <?php else: ?>
-                                <div class="dropdown my-account-dropdown ">
-                                    <a href="<?php echo e(URL::to('/login')); ?>" class=" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i>
-                                        <span class="caret"></span> Account
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<?php echo e(URL::to('/register')); ?>">Create New Account</a></li>
-                                        <li><a href="<?php echo e(URL::to('/login')); ?>"> Login In </a></li>
-                                    </ul>
+                                <div class="header_r d-flex">
+                                <div class="loin">
+                                    <a class="nav-link" href="<?php echo e(URL::to('/login')); ?>">Sign In</a>
                                 </div>
+                                <div class="loin">
+                                    <a class="nav-link" href="<?php echo e(URL::to('/register')); ?>">Register</a>
+                                </div>
+                                </div>
+                                
                                 <?php endif; ?>
                         </div>
                         <ul class="ml-auto post_ad">
@@ -151,10 +151,11 @@
                     <ul class="navbar-nav">
                         <?php if(count($categories)>0): ?>
                             <?php  $path=request()->segment(count(request()->segments()));?>
-                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoryData): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li class="nav-item">
-                                    <a id="<?php echo e('categoryId-'.$category->id); ?>" class="ad-category nav-link <?php if(isset($adDetails) && $adDetails->category_id==$category->id): ?> active <?php endif; ?>  <?php if($path==$category->link): ?> active <?php else: ?> '' <?php endif; ?>"  href="<?php echo e(URL::to('ads/bangladesh/'.$category->link)); ?>">
-                                        <?php echo e($category->category_name); ?>
+                                    <a id="<?php echo e('categoryId-'.$categoryData->id); ?>" class="ad-category nav-link <?php if(isset($adDetails) && $adDetails->category_id==$categoryData->id): ?> active <?php endif; ?>  <?php if($path==$categoryData->link): ?> active <?php else: ?> '' <?php endif; ?>
+                                       <?php if(isset($category) && $category->id==$categoryData->id): ?> active <?php else: ?> '' <?php endif; ?>"  href="<?php echo e(URL::to('ads/bangladesh/'.$categoryData->link)); ?>">
+                                        <?php echo e($categoryData->category_name); ?>
 
                                     </a>
                                 </li>

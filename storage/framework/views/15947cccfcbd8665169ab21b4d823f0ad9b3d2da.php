@@ -16,7 +16,10 @@
 
 
                 <div id="defaultLocation">
-                    <?php $routeName=explode('/',Request::path())?>
+                    <?php
+                    $routeName=explode('/',Request::path());
+                    $locationName=Request::segment(2);
+                    ?>
                     <?php if($routeName[0]=='price' ||$routeName[0]=='tag'): ?>
                         <span></span>
                     <?php else: ?>
@@ -27,8 +30,13 @@
                     <?php endif; ?>
 
                 <?php if(count($categoryWiseLocations)>0): ?>
+
                         <?php $__currentLoopData = $categoryWiseLocations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <a href="<?php echo e(URL::to('ads/'.$location->locationByCat->url.'/'.$category->link)); ?>"><?php echo e($location->locationByCat->location_name); ?></a>
+                            <?php if($locationName==$location->locationByCat->url): ?>
+                            <a class="active" href="<?php echo e(URL::to('ads/'.$location->locationByCat->url.'/'.$category->link)); ?>"><?php echo e($location->locationByCat->location_name); ?> </a>
+                                <?php else: ?>
+                                    <a class="" href="<?php echo e(URL::to('ads/'.$location->locationByCat->url.'/'.$category->link)); ?>"><?php echo e($location->locationByCat->location_name); ?></a>
+                                <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php else: ?>
                         <a href="javascript:void(0)"> No Location </a>

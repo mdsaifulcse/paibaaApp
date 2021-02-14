@@ -1,21 +1,22 @@
 <?php
+Route::middleware(['https'])->group(function () {
 
-Route::get('/ads/{divisionLink}/{catLink}','Frontend\AdController@categoryWiseAds');
+    Route::get('/ads/{divisionLink}/{catLink}','Frontend\AdController@categoryWiseAds');
 
-Route::get('ad/{adLink}','Frontend\AdController@singleAdDetails');
-Route::get('edit-blog-ans/{ansEditId}','Frontend\AdController@loadBlogAnsById');
+    Route::get('ad/{adLink}','Frontend\AdController@singleAdDetails');
+    Route::get('edit-blog-ans/{ansEditId}','Frontend\AdController@loadBlogAnsById');
 
-Route::get('price/{price}','Frontend\AdController@showAdsByAdPriceTitle');
+    Route::get('price/{price}','Frontend\AdController@showAdsByAdPriceTitle');
 
-Route::get('tag/{tag}','Frontend\AdController@showAdsByAdTags');
+    Route::get('tag/{tag}','Frontend\AdController@showAdsByAdTags');
 
-Route::get('profile/{userName}','Frontend\AdController@viewAuthorAllAds');
+    Route::get('profile/{userName}','Frontend\AdController@viewAuthorAllAds');
 
-Route::get('social-login/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('social-login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+    Route::get('social-login/facebook', 'Auth\LoginController@redirectToProvider');
+    Route::get('social-login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/page/{pageLink}','Frontend\PaibaController@singlePageDetail');
-
+    Route::get('/page/{pageLink}','Frontend\PaibaController@singlePageDetail');
+});
 
 
 Route::resource('/register-client','Frontend\ClientRegistrationController');
@@ -29,7 +30,8 @@ Route::get('/load-comments-data/{adPostId}','Frontend\AdPostCommentController@in
 
 Route::get('/load-blog-replay-data/{ansId}','Frontend\AnswerReplayController@show');
 
-Route::middleware(['auth','disablepreventback','client'])->group(function () {
+
+Route::middleware(['auth','disablepreventback','client','https'])->group(function () {
 
     // blog answer & replay -----------------
     Route::resource('customer-order','Frontend\OrderController');

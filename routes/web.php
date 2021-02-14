@@ -16,7 +16,7 @@ Route::get('/','Frontend\PaibaController@index');
 include 'frontendRoute.php';
 
 
-Route::middleware(['auth','disablepreventback','admin'])->group(function () {
+Route::middleware(['auth','disablepreventback','admin','https'])->group(function () {
     Route::get('/home', 'DashboadController@home');
     Route::get('/home/{slug}', 'DashboadController@subMenu');
     Route::get('/home/{slug}/{subslug}', 'DashboadController@subSubMenu');

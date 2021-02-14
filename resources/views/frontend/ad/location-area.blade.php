@@ -16,7 +16,10 @@
 
 
                 <div id="defaultLocation">
-                    <?php $routeName=explode('/',Request::path())?>
+                    <?php
+                    $routeName=explode('/',Request::path());
+                    $locationName=Request::segment(2);
+                    ?>
                     @if($routeName[0]=='price' ||$routeName[0]=='tag')
                         <span></span>
                     @else
@@ -27,8 +30,13 @@
                     @endif
 
                 @if(count($categoryWiseLocations)>0)
+
                         @foreach($categoryWiseLocations as $location)
-                            <a href="{{URL::to('ads/'.$location->locationByCat->url.'/'.$category->link)}}">{{$location->locationByCat->location_name}}</a>
+                            @if($locationName==$location->locationByCat->url)
+                            <a class="active" href="{{URL::to('ads/'.$location->locationByCat->url.'/'.$category->link)}}">{{$location->locationByCat->location_name}} </a>
+                                @else
+                                    <a class="" href="{{URL::to('ads/'.$location->locationByCat->url.'/'.$category->link)}}">{{$location->locationByCat->location_name}}</a>
+                                @endif
                         @endforeach
                     @else
                         <a href="javascript:void(0)"> No Location </a>

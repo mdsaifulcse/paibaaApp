@@ -146,7 +146,15 @@
                                 </form>
 
                                 @else
-                                <div class="dropdown my-account-dropdown ">
+                                <div class="header_r d-flex">
+                                <div class="loin">
+                                    <a class="nav-link" href="{{URL::to('/login')}}">Sign In</a>
+                                </div>
+                                <div class="loin">
+                                    <a class="nav-link" href="{{URL::to('/register')}}">Register</a>
+                                </div>
+                                </div>
+                                {{--<div class="dropdown my-account-dropdown ">
                                     <a href="{{URL::to('/login')}}" class=" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i>
                                         <span class="caret"></span> Account
                                     </a>
@@ -154,7 +162,7 @@
                                         <li><a href="{{URL::to('/register')}}">Create New Account</a></li>
                                         <li><a href="{{URL::to('/login')}}"> Login In </a></li>
                                     </ul>
-                                </div>
+                                </div>--}}
                                 @endif
                         </div>
                         <ul class="ml-auto post_ad">
@@ -184,10 +192,11 @@
                     <ul class="navbar-nav">
                         @if(count($categories)>0)
                             <?php  $path=request()->segment(count(request()->segments()));?>
-                            @foreach($categories as $category)
+                            @foreach($categories as $categoryData)
                                 <li class="nav-item">
-                                    <a id="{{'categoryId-'.$category->id}}" class="ad-category nav-link @if(isset($adDetails) && $adDetails->category_id==$category->id) active @endif  @if($path==$category->link) active @else '' @endif"  href="{{URL::to('ads/bangladesh/'.$category->link)}}">
-                                        {{$category->category_name}}
+                                    <a id="{{'categoryId-'.$categoryData->id}}" class="ad-category nav-link @if(isset($adDetails) && $adDetails->category_id==$categoryData->id) active @endif  @if($path==$categoryData->link) active @else '' @endif
+                                       @if(isset($category) && $category->id==$categoryData->id) active @else '' @endif"  href="{{URL::to('ads/bangladesh/'.$categoryData->link)}}">
+                                        {{$categoryData->category_name}}
                                     </a>
                                 </li>
                             @endforeach

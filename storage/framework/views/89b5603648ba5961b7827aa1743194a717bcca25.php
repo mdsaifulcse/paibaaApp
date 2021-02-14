@@ -239,120 +239,17 @@
             </div>
             <!-- Row  -->
 
-            <div class="row">
-                <div class="col-md-8">
-                    <!-- Description area -->
-                    <hr>
-                    <h5 class=" badge-info p-1"> Comment</h5>
-
-                    <section class="iner_breadcrumb p-t-20 p-b-20">
-
-
-                        <div class="row">
-                            <div class="col-md-1 col-sm-3">
-                                <div class="">
-                                    <?php if(!empty(auth()->user()->image)): ?>
-                                        <img class="comment-user-img" src="<?php echo e(asset(auth()->user()->image)); ?>">
-                                    <?php else: ?>
-                                        <img class="comment-user-img" src="<?php echo e(asset('/images/default/photo.png')); ?>">
-                                    <?php endif; ?>
-                                </div>
-
-                            </div>
-                            <div class="col-md-11 col-sm-9">
-                                <?php if(Auth::check() && Auth::user()->status==0): ?>
-
-                                    <p class="text-center m-b-10">
-                                        <span class="text-danger">Your Profile is not complete, Please complete</span>
-                                        <a href="<?php echo e(URL::to('my-profile')); ?>" class="price-request"> Profile </a>
-                                    </p>
-
-                                    <?php $readonly='readonly'?>
-                                <?php else: ?>
-                                    <?php $readonly=''?>
-                                <?php endif; ?>
-                                <strong></strong>
-                                <?php echo Form::open(['url'=>'/ad-public-comment-save','method'=>'POST','id'=>'commentForm','data-route'=>'ad-public-comment']); ?>
-
-
-                                <input type="hidden" name="user_id" value="<?php echo e(Auth::check() && Auth::user()->id); ?>" id="userId">
-                                <input type="hidden" name="ad_post_id" value="<?php echo e($adDetails->id); ?>" id="adPostId">
-
-                                <textarea name="comment" id="comment" <?php echo e($readonly); ?> onclick="openCommentBox(this.value)" onkeyup="openCommentBox(this.value)" rows="2" class="form-control comment-box" placeholder="Add Public Comment"></textarea>
-                                <span class="text-danger comment-error" style="display: none"> Comment is required !</span>
-
-                                <div class="submitCancel pull-right m-t-5 " style="display: none">
-                                    <span class="btn btn-default cancel">CANCEL</span> &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" disabled class="btn btn-success" id="commentSubmit"> COMMENT </button>
-                                </div>
-
-                                <?php echo Form::close(); ?>
-
-                            </div>
-                        </div>
-
-
-                        
-                            
-                                
-                            
-                            
-                                
-                            
-                        
-
-                        <hr>
-                        <!-- Start Comment show  -->
-                        <div id="commentData">
-                            <?php $numberOfComment=count($comments);?>
-                            <?php if($numberOfComment>0): ?>
-                                <?php $__currentLoopData = $comments->take(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="row m-t-20">
-                                        <div class="col-md-1 col-sm-3">
-                                            <div class="">
-                                                <?php if(!empty($comment->commentAuthor->image)): ?>
-                                                    <a href="<?php echo e(URL::to('/profile/'.$comment->commentAuthor->user_name)); ?>">
-                                                    <img class="comment-user-img" src="<?php echo e(asset($comment->commentAuthor->image)); ?>"></a>
-                                                <?php else: ?>
-                                                    <a href="<?php echo e(URL::to('/profile/'.$comment->commentAuthor->user_name)); ?>">
-                                                    <img class="comment-user-img" src="<?php echo e(asset('/images/default/photo.png')); ?>">
-                                                    </a>
-                                                <?php endif; ?>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-11 col-sm-9">
-
-                                            <h6><a href="<?php echo e(URL::to('/profile/'.$comment->commentAuthor->user_name)); ?>"> <strong><?php echo e($comment->commentAuthor->name); ?> </strong></a><?php echo e($comment->created_at->diffForHumans()); ?> </h6>
-                                            <h6> <?php echo e($comment->comment); ?></h6>
-
-                                            <?php echo Form::close(); ?>
-
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                                <?php if($numberOfComment>3): ?>
-                                <button class="btn btn-info btn-sm m-t-10" id="seeMoreComment"> See more</button>
-                                <?php endif; ?>
-
-                            <?php endif; ?>
-                        </div>
-
-                        <!-- end comment show -->
-
-                    </section>
-
-                </div>
-            </div>
         </div>
     </section>
+    <hr>
+
     <section class="top_listings">
         <div class="container">
 
             <!-- Row  -->
             <div class="row">
                 <div class="col-md-3  m-b-10">
-                    <h5 class=" badge-success p-1">You may like ...</h5>
+                    <h5 class=" badge-success p-1" style="background-color: #8BC34A;">You may like ...</h5>
                 </div>
             </div>
             <!-- Row  -->

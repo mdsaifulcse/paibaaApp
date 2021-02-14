@@ -140,7 +140,10 @@
                             <!-- User image -->
                             <li><a href="{{URL::to('user-profile')}}" class=""><i class="fa fa-user-circle" aria-hidden="true"></i> Profile</a></li>
                             <li><a href="{{URL::to('user-profile/password')}}" class=""><i class="fa fa-key"></i> Change Password</a></li>
-                            <li><a href="{{URL::to('logout')}}" class=""><i class="fa fa-sign-out"></i> Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            {!! Form::open(['route'=>'logout','method'=>'POST','id'=>'logout-form','style'=>'display:none']) !!}
+                            {!! Form::close() !!}
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->

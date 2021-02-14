@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Session;
 use Response,Validator,DB;
 use Illuminate\Http\Request;
 use Yajra\Acl\Models\Role;
@@ -136,8 +137,11 @@ class ClientRegistrationController extends Controller
             $bug=$e->errorInfo[1];
             $bug2=$e->errorInfo[1];
         }
+
+        //Session::pull('od_rf','my-profile');
+
         if($bug==0){
-            return redirect()->back()->with('success','Your account successfully create, and waiting for approval');
+            return redirect('/login?od_rf='.'my-profile')->with('success','Your account successfully create, Now Login & Complete Your Profile');
         }elseif($bug==1062){
             return redirect()->back()->with('error','The Email has already been taken.');
         }else{

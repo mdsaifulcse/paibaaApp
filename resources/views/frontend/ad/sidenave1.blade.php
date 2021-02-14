@@ -8,7 +8,7 @@
     <div class="sidebar-wrapper">
 
         <div class="single-sidebar">
-            <?php $routeName=explode('/',Request::path());?>
+            <?php $routeName=explode('/',Request::path())?>
             @if($routeName[0]=='price' ||$routeName[0]=='tag')
                 <span></span>
                 @else
@@ -32,33 +32,35 @@
     <div id="defaultCategory">
 
         <ul class="nav nav-pills">
-            <?php
-            $locationName=Request::segment(2);
-            ?>
-
-            @forelse($adSubCategories as $key=>$adSubCategory)
-
             <li class="dropdown">
+                <a href="{{url('/sdhfhkjs')}}" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu" id="menu1">
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </li>
+        </ul>
+
+
+        @if(count($adSubCategories)>0)
+            @foreach($adSubCategories as $adSubCategory)
 
                 @if(count($adSubCategory->subCatByCat->subCatPrices)>0)
-
-                    <a href="{{URL::to("ads/$locationName/".$category->link.'?subcategory='.$adSubCategory->subCatByCat->id)}}" class="dropdown-toggle @if($subCategoryInfo!='' && $subCategoryInfo->id==$adSubCategory->subCatByCat->id) active-category @else '' @endif">
+                    <a class=" dropdown-btn @if($subCategoryInfo!='' && $subCategoryInfo->id==$adSubCategory->subCatByCat->id) active-category @else '' @endif">
                         {{$adSubCategory->subCatByCat->sub_category_name}}
                         ({{number_format($adSubCategory->subCatByCat->totalSubCatAd->total_ad)}})
-                        <b class="caret"></b></a>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
 
-                        <ul class="dropdown-menu dropdown-container" id="menu1{{$key}}">
-                            @foreach($adSubCategory->subCatByCat->subCatPrices as $priceData)
-                            <li>
-                                <a href="{{URL::to("ads/$locationName/".$category->link.'?subcategory='.$adSubCategory->subCatByCat->id."&pricetitle=$priceData->price_title")}}">
-                                    {{$priceData->price_title}} </a>
-                            </li>
-                            @endforeach
-                        </ul>
+                    <div class="dropdown-container">
+                        @foreach($adSubCategory->subCatByCat->subCatPrices as $priceData)
+                            <a href="{{URL::to('ads/bangladesh/'.$category->link.'?subcategory='.$adSubCategory->subCatByCat->id."&pricetitle=$priceData->price_title")}}">
+                                {{$priceData->price_title}} </a>
+                        @endforeach
+                    </div>
 
                 @else
                     <a class="@if($subCategoryInfo!='' && $subCategoryInfo->id==$adSubCategory->subCatByCat->id) active-category @else '' @endif"
-                       href="{{URL::to("ads/$locationName/".$category->link.'?subcategory='.$adSubCategory->subCatByCat->id)}}">
+                       href="{{URL::to('ads/bangladesh/'.$category->link.'?subcategory='.$adSubCategory->subCatByCat->id)}}">
                         {{$adSubCategory->subCatByCat->sub_category_name}}
                         @if(!empty($adSubCategory->subCatByCat->totalSubCatAd))
                             ({{number_format($adSubCategory->subCatByCat->totalSubCatAd->total_ad)}})
@@ -66,17 +68,13 @@
                             0
                         @endif
                     </a>
+
                 @endif
 
-            </li>
-
-                @empty
-            <li class="">
-                <a href="javascript:void(0)" class="dropdown-toggle">No Data Found !</a>
-
-            </li>
-                @endforelse
-        </ul>
+            @endforeach
+        @else
+            <a href="javascript:void(0)"> No Sub-subcategory  </a>
+        @endif
     </div>
 
 </div>

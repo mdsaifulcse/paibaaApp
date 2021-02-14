@@ -137,7 +137,12 @@
                             <!-- User image -->
                             <li><a href="<?php echo e(URL::to('user-profile')); ?>" class=""><i class="fa fa-user-circle" aria-hidden="true"></i> Profile</a></li>
                             <li><a href="<?php echo e(URL::to('user-profile/password')); ?>" class=""><i class="fa fa-key"></i> Change Password</a></li>
-                            <li><a href="<?php echo e(URL::to('logout')); ?>" class=""><i class="fa fa-sign-out"></i> Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <?php echo Form::open(['route'=>'logout','method'=>'POST','id'=>'logout-form','style'=>'display:none']); ?>
+
+                            <?php echo Form::close(); ?>
+
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->

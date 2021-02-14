@@ -11,7 +11,8 @@ use DB;
 class AdPost extends Model
 {
     protected $table='ad_post';
-    protected $fillable=['user_id','title','lang','description','address','category_id','deliverable','delivery_fee','price','is_negotiable','tag','status','visitor','link','is_approved','approved_by','published_till','created_by','updated_by',];
+    protected $fillable=['user_id','title','lang','description','address','contact','category_id','deliverable','delivery_fee','price',
+        'is_negotiable','tag','status','visitor','link','is_approved','approved_by','published_till','created_by','updated_by',];
 
 
     public function postCategory(){
@@ -28,6 +29,9 @@ class AdPost extends Model
 
     public function adPostPrice(){ // Ad Post Sub-Categories
         return $this->hasMany(AdPostPrice::class,'ad_post_id','id')->groupBy('price_title')->orderBy('id');
+    }
+    public function adPostLocation(){ // Ad Post Sub-Categories
+        return $this->hasMany(AdPostLocation::class,'ad_post_id','id')->orderBy('id');
     }
 
     public function postApproved(){

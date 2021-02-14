@@ -111,13 +111,9 @@ class AdPostController extends Controller
         return preg_replace('/\s+/u', '-', trim($string));
     }
 
-
-    public function store(Request $request)
+    public function generateLink($title, $authId=null)
     {
-
-        date_default_timezone_set('Asia/Dhaka');
-        $input=$request->except('sub_category_name','location','price_title','price');
-        $link=str_replace(' , ', '-', $input['title']);
+        $link=str_replace(' , ', '-', $title);
         $link=str_replace(', ', '-', $link);
         $link=str_replace(' ,', '-', $link);
         $link=str_replace(',', '-', $link);
@@ -127,13 +123,29 @@ class AdPostController extends Controller
         $link=str_replace('.', '', $link);
         $link=substr($link,0,30);
         $link=strtolower($link);
-        if (strlen($input['title']) != strlen(utf8_decode($input['title']))){
-            $link=substr($input['title'],0,80);
+
+        if (strlen($title) != strlen(utf8_decode($title))){
+            $link=substr($title,0,80);
             $link=strtolower($link);
             $link= $this->make_slug($link);
         }
 
-        $input['link']=$link.'-'.Auth::user()->id.'-'.date('ymdHis');
+        if ($authId!=null)
+        {
+            return $link.'-'.$authId;
+        }else{
+            return $link;
+        }
+    }
+
+
+    public function store(Request $request)
+    {
+
+        date_default_timezone_set('Asia/Dhaka');
+        $input=$request->except('sub_category_name','location','price_title','price');
+
+        $input['link']= $this->generateLink($input['title'],Auth::user()->id);
 
         if(isset($input['deliverable'])){
             $input['deliverable']=1;
@@ -144,10 +156,10 @@ class AdPostController extends Controller
         $validator = Validator::make($input, [
             'category_id'    => 'required|exists:categories,id|numeric',
             'title'              => 'required|max:100',
-            'address'            => 'required_if:category_id,!=5|max:120',
+            'address'            => 'nullable|max:120',//'required_if:category_id,!=5|max:120',
             'tag'                => 'nullable|max:100',
-            'description'        => 'required|max:5000',
-            'photo_one'          => 'nullable|image',
+            'description'        => 'required|max:6000',
+            'photo_one'          => 'required|image|mimes:jpeg,bmp,png',
             'photo_two'          => 'image',
             'photo_three'        => 'image',
             'photo_four'         => 'image',
@@ -218,16 +230,8 @@ class AdPostController extends Controller
 
                     $location = Location::where(['location_name' =>$locations[$i]])->first();
                     if (empty($location)){
-                        $link=str_replace(' , ', '-', $locations[$i]);
-                        $link=str_replace(', ', '-', $link);
-                        $link=str_replace(' ,', '-', $link);
-                        $link=str_replace(',', '-', $link);
-                        $link=str_replace('/', '-', $link);
-                        $link=rtrim($link,' ');
-                        $link=str_replace(' ', '-', $link);
-                        $link=str_replace('.', '', $link);
-                        $link=substr($link,0,50);
-                        $link=strtolower($link);
+
+                        $link=$this->generateLink($locations[$i]);
 
                         $location=Location::create(['location_name'=>$locations[$i],'url'=>$link]);
                     }
@@ -354,35 +358,19 @@ class AdPostController extends Controller
 
         date_default_timezone_set('Asia/Dhaka');
 
-        $link=str_replace(' , ', '-', $input['title']);
-        $link=str_replace(', ', '-', $link);
-        $link=str_replace(' ,', '-', $link);
-        $link=str_replace(',', '-', $link);
-        $link=str_replace('/', '-', $link);
-        $link=rtrim($link,' ');
-        $link=str_replace(' ', '-', $link);
-        $link=str_replace('.', '', $link);
-        $link=substr($link,0,30);
-        $link=strtolower($link);
-        if (strlen($input['title']) != strlen(utf8_decode($input['title']))){
-            $link=substr($input['title'],0,80);
-            $link=strtolower($link);
-            $link= $this->make_slug($link);
-        }
-
-        $input['link']=$link.'-'.Auth::user()->id.'-'.date('ymdHis');
+        $input['link']= $this->generateLink($input['title']);
 
         $validator = Validator::make($input, [
             'category_id'    => 'required|exists:categories,id|numeric',
             'title'              => 'required|max:100',
-            'address'            => 'required_if:category_id,!=5|max:120',
+            'address'            => 'nullable|max:120',//'required_if:category_id,!=5|max:120',
             'tag'                => 'nullable|max:100',
             'description'        => 'required|max:5000',
             'photo_one'          => 'nullable|image',
             'photo_two'          => 'image',
             'photo_three'        => 'image',
             'photo_four'         => 'image',
-            'link'               => 'unique:ad_post',
+            'link'               => "unique:ad_post,link,$id",
             'delivery_fee'       => 'required_if:deliverable,==,1'
         ]);
         if ($validator->fails()) {
@@ -466,20 +454,11 @@ class AdPostController extends Controller
                 for ($i=0; $i <$locationSize ; $i++) {
                     $location = Location::where(['location_name' =>$locations[$i]])->first();
                    if (empty($location)){
-                       $link=str_replace(' , ', '-', $locations[$i]);
-                       $link=str_replace(', ', '-', $link);
-                       $link=str_replace(' ,', '-', $link);
-                       $link=str_replace(',', '-', $link);
-                       $link=str_replace('/', '-', $link);
-                       $link=rtrim($link,' ');
-                       $link=str_replace(' ', '-', $link);
-                       $link=str_replace('.', '', $link);
-                       $link=substr($link,0,50);
-                       $link=strtolower($link);
+
+                       $link=$this->generateLink($locations[$i]);
 
                        $location=Location::create(['location_name'=>$locations[$i],'url'=>$link]);
                    }
-
 
                     AdPostLocation::create([
                         'location_id' => $location->id,
@@ -491,8 +470,6 @@ class AdPostController extends Controller
 
 
             // --- relational table  end  ---
-
-
 
 
             $adPhotos = PostPhoto::where(['ad_post_id' => $id])->first();

@@ -232,117 +232,17 @@
             </div>
             <!-- Row  -->
 
-            <div class="row">
-                <div class="col-md-8">
-                    <!-- Description area -->
-                    <hr>
-                    <h5 class=" badge-info p-1"> Comment</h5>
-
-                    <section class="iner_breadcrumb p-t-20 p-b-20">
-
-
-                        <div class="row">
-                            <div class="col-md-1 col-sm-3">
-                                <div class="">
-                                    @if(!empty(auth()->user()->image))
-                                        <img class="comment-user-img" src="{{asset(auth()->user()->image)}}">
-                                    @else
-                                        <img class="comment-user-img" src="{{asset('/images/default/photo.png')}}">
-                                    @endif
-                                </div>
-
-                            </div>
-                            <div class="col-md-11 col-sm-9">
-                                @if(Auth::check() && Auth::user()->status==0)
-
-                                    <p class="text-center m-b-10">
-                                        <span class="text-danger">Your Profile is not complete, Please complete</span>
-                                        <a href="{{URL::to('my-profile')}}" class="price-request"> Profile </a>
-                                    </p>
-
-                                    <?php $readonly='readonly'?>
-                                @else
-                                    <?php $readonly=''?>
-                                @endif
-                                <strong></strong>
-                                {!! Form::open(['url'=>'/ad-public-comment-save','method'=>'POST','id'=>'commentForm','data-route'=>'ad-public-comment']) !!}
-
-                                <input type="hidden" name="user_id" value="{{Auth::check() && Auth::user()->id}}" id="userId">
-                                <input type="hidden" name="ad_post_id" value="{{$adDetails->id}}" id="adPostId">
-
-                                <textarea name="comment" id="comment" {{$readonly}} onclick="openCommentBox(this.value)" onkeyup="openCommentBox(this.value)" rows="2" class="form-control comment-box" placeholder="Add Public Comment"></textarea>
-                                <span class="text-danger comment-error" style="display: none"> Comment is required !</span>
-
-                                <div class="submitCancel pull-right m-t-5 " style="display: none">
-                                    <span class="btn btn-default cancel">CANCEL</span> &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" disabled class="btn btn-success" id="commentSubmit"> COMMENT </button>
-                                </div>
-
-                                {!! Form::close() !!}
-                            </div>
-                        </div>
-
-
-                        {{--<div class="row">--}}
-                            {{--<div class="col-md-2">--}}
-                                {{--<h5 class="text-left"> Comment</h5>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-10">--}}
-                                {{--<h5><a href="{{URL::to('/login')}}" class="price-request">  Login </a>  for Comment <i class="fa fa-commenting-o" aria-hidden="true"></i> Or Get <a href="javascript:void(0)" data-toggle="modal" data-target="#register" class="badge-primary"> Register </a>  </h5>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-                        <hr>
-                        <!-- Start Comment show  -->
-                        <div id="commentData">
-                            <?php $numberOfComment=count($comments);?>
-                            @if($numberOfComment>0)
-                                @foreach($comments->take(3) as $comment)
-                                    <div class="row m-t-20">
-                                        <div class="col-md-1 col-sm-3">
-                                            <div class="">
-                                                @if(!empty($comment->commentAuthor->image))
-                                                    <a href="{{URL::to('/profile/'.$comment->commentAuthor->user_name)}}">
-                                                    <img class="comment-user-img" src="{{asset($comment->commentAuthor->image)}}"></a>
-                                                @else
-                                                    <a href="{{URL::to('/profile/'.$comment->commentAuthor->user_name)}}">
-                                                    <img class="comment-user-img" src="{{asset('/images/default/photo.png')}}">
-                                                    </a>
-                                                @endif
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-11 col-sm-9">
-
-                                            <h6><a href="{{URL::to('/profile/'.$comment->commentAuthor->user_name)}}"> <strong>{{$comment->commentAuthor->name}} </strong></a>{{$comment->created_at->diffForHumans()}} </h6>
-                                            <h6> {{$comment->comment}}</h6>
-
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                                @if($numberOfComment>3)
-                                <button class="btn btn-info btn-sm m-t-10" id="seeMoreComment"> See more</button>
-                                @endif
-
-                            @endif
-                        </div>
-
-                        <!-- end comment show -->
-
-                    </section>
-
-                </div>
-            </div>
         </div>
     </section>
+    <hr>
+
     <section class="top_listings">
         <div class="container">
 
             <!-- Row  -->
             <div class="row">
                 <div class="col-md-3  m-b-10">
-                    <h5 class=" badge-success p-1">You may like ...</h5>
+                    <h5 class=" badge-success p-1" style="background-color: #8BC34A;">You may like ...</h5>
                 </div>
             </div>
             <!-- Row  -->

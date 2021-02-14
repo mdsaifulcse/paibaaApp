@@ -36,41 +36,6 @@
 
                                     <input id="categoryId" type="hidden" name="category_id" value="{{$categoryInfo->id}}">
 
-                                    <div class="row form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                        <label for="title" class="col-md-2 label-title">Title <sup class=" text-danger">*</sup> </label>
-
-                                        <div class="col-md-10">
-                                            {{Form::text('title',$value=$adData->title,['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Short title will be more useful to find your ad',
-                                        'required'=>true,'data-error'=>':Please enter Ad title'])}}
-
-                                            @if ($errors->has('title'))
-                                                <span class="help-block">
-                                            <strong class="text-danger">{{ $errors->first('title') }}</strong>
-                                        </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="row paddingTop15">
-                                        <label class="col-md-2"> Sub-Category <sup class="text-danger">*</sup></label>
-
-                                        <div class="col-md-10">
-                                            {{Form::text('sub_category_name[]',$value=implode(',',$existPostSubCats),['id'=>'subCategoryField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your sub-category and press Enter','required'=>false])}}
-
-                                            <ul id="subCategoryFieldUl"></ul>
-                                            <span class="subCategoryError text-danger"> </span>
-                                            <span class="taging-notes"> Type your sub-category and press Enter. Max(5) </span>
-                                            <hr>
-
-                                            @if ($errors->has('sub_category_name'))
-                                                <span class="help-block">
-                                        <strong class="text-danger">{{ $errors->first('sub_category_name') }}</strong>
-                                    </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-
                                     <div class="row paddingTop15">
                                         <label class="col-md-2"> Location <sup class="text-danger">*</sup></label>
 
@@ -89,7 +54,55 @@
                                     </div>
 
 
+                                    @if($categoryInfo->post_type==2)
+                                        <div class="row form-group">
+                                            <label class="col-md-2"> Language <sup class="text-danger help-block with-errors">*</sup></label>
 
+                                            <div class="col-md-10">
+                                                {{Form::text('lang',$value=old('lang',$adData->lang),['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Your preferred language, (Ex: English, Bengali)',
+                                                                                                                                'required'=>true])}}
+                                                @if ($errors->has('lang'))
+                                                    <strong class="text-danger">{{ $errors->first('lang') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+
+
+                                    <div class="row {{ $errors->has('title') ? ' has-error' : '' }}">
+                                        <label for="title" class="col-md-2 label-title">Title <sup class=" text-danger">*</sup> </label>
+
+                                        <div class="col-md-10">
+                                            {{Form::text('title',$value=$adData->title,['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Short title will be more useful to find your ad',
+                                        'required'=>true,'data-error'=>':Please enter Ad title'])}}
+
+                                            @if ($errors->has('title'))
+                                                <span class="help-block">
+                                            <strong class="text-danger">{{ $errors->first('title') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="row paddingTop15">
+                                        <label class="col-md-2"> Category <sup class="text-danger">*</sup></label>
+
+                                        <div class="col-md-10">
+                                            {{Form::text('sub_category_name[]',$value=implode(',',$existPostSubCats),['id'=>'subCategoryField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your category and press Enter','required'=>false])}}
+
+                                            <ul id="subCategoryFieldUl"></ul>
+                                            <span class="subCategoryError text-danger"> </span>
+                                            <span class="taging-notes"> Type your category and press Enter. Max(5) </span>
+                                            <hr>
+
+                                            @if ($errors->has('sub_category_name'))
+                                                <span class="help-block">
+                                        <strong class="text-danger">{{ $errors->first('sub_category_name') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
 
 
                                     <div class="row form-group {{ $errors->has('photo_one') ? ' has-error' : '' }}  {{ $errors->has('photo_two') ? ' has-error' : '' }}  {{ $errors->has('photo_three') ? ' has-error' : '' }}  {{ $errors->has('photo_four') ? ' has-error' : '' }} add-image">
@@ -148,14 +161,27 @@
 
 
                                     @if($categoryInfo->post_type==1)
+
                                         <div class="row form-group">
-                                            <label class="col-md-2">Meetup <sup class="text-danger help-block with-errors">*</sup></label>
+                                            <label class="col-md-2" title="Phone number">Phone <sup class="text-danger with-errors">*</sup></label>
                                             <div class="col-md-10">
-                                                {{Form::text('address',$value=$adData->address,['data-error'=>':Specific Address is Required','class'=>'form-control type-pass','placeholder'=>'Specific Address ','required'=>true])}}
+                                                {{Form::text('contact',$value=old('contact',$adData->contact),['class'=>'form-control type-pass','placeholder'=>'Phone number here','required'=>true])}}
+                                                @if ($errors->has('contact'))
+                                                    <span class="help-block">
+                                            <strong class="text-danger">{{ $errors->first('contact') }}</strong>
+                                        </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <label class="col-md-2">Meetup</label>
+                                            <div class="col-md-10">
+                                                {{Form::text('address',$value=$adData->address,['class'=>'form-control type-pass','placeholder'=>'Specific Address ','required'=>false])}}
                                                 @if ($errors->has('address'))
                                                     <span class="help-block">
-                                            <strong class="text-danger">{{ $errors->first('address') }}</strong>
-                                        </span>
+                                                        <strong class="text-danger">{{ $errors->first('address') }}</strong>
+                                                    </span>
                                                 @endif
                                             </div>
                                         </div>
@@ -163,7 +189,7 @@
 
                                     @if($categoryInfo->post_type==1) <!--hide when category is special=blog -->
                                     <div class="row form-group  {{ $errors->has('price') ? ' has-error' : '' }} select-price">
-                                        <label class="col-sm-2 label-title">@if($categoryInfo->category_name=='Need') Amount @else Price @endif <sup class="text-danger">*</sup></label>
+                                        <label class="col-sm-2 label-title">@if($categoryInfo->category_name=='Need') Pay @else Price @endif <sup class="text-danger">*</sup></label>
                                         <div class="col-sm-10">
                                             <div class="field_wrapper">
                                                 @if(count($adData->adPostPrice)>0)

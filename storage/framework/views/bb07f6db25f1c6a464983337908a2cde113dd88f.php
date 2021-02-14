@@ -8,7 +8,7 @@
     <div class="sidebar-wrapper">
 
         <div class="single-sidebar">
-            <?php $routeName=explode('/',Request::path())?>
+            <?php $routeName=explode('/',Request::path());?>
             <?php if($routeName[0]=='price' ||$routeName[0]=='tag'): ?>
                 <span></span>
                 <?php else: ?>
@@ -31,27 +31,35 @@
 
     <div id="defaultCategory">
 
-        <?php if(count($adSubCategories)>0): ?>
-            <?php $__currentLoopData = $adSubCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $adSubCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <ul class="nav nav-pills">
+            <?php
+            $locationName=Request::segment(2);
+            ?>
+
+            <?php $__empty_1 = true; $__currentLoopData = $adSubCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$adSubCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+
+            <li class="dropdown">
 
                 <?php if(count($adSubCategory->subCatByCat->subCatPrices)>0): ?>
-                    <a class=" dropdown-btn <?php if($subCategoryInfo!='' && $subCategoryInfo->id==$adSubCategory->subCatByCat->id): ?> active-category                      <?php else: ?> '' <?php endif; ?>">
+
+                    <a href="<?php echo e(URL::to("ads/$locationName/".$category->link.'?subcategory='.$adSubCategory->subCatByCat->id)); ?>" class="dropdown-toggle <?php if($subCategoryInfo!='' && $subCategoryInfo->id==$adSubCategory->subCatByCat->id): ?> active-category <?php else: ?> '' <?php endif; ?>">
                         <?php echo e($adSubCategory->subCatByCat->sub_category_name); ?>
 
                         (<?php echo e(number_format($adSubCategory->subCatByCat->totalSubCatAd->total_ad)); ?>)
-                        <i class="fa fa-caret-down"></i>
-                    </a>
+                        <b class="caret"></b></a>
 
-                    <div class="dropdown-container">
-                        <?php $__currentLoopData = $adSubCategory->subCatByCat->subCatPrices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $priceData): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <a href="<?php echo e(URL::to('ads/bangladesh/'.$category->link.'?subcategory='.$adSubCategory->subCatByCat->id."&pricetitle=$priceData->price_title")); ?>">
-                                <?php echo e($priceData->price_title); ?> </a>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
+                        <ul class="dropdown-menu dropdown-container" id="menu1<?php echo e($key); ?>">
+                            <?php $__currentLoopData = $adSubCategory->subCatByCat->subCatPrices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $priceData): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <a href="<?php echo e(URL::to("ads/$locationName/".$category->link.'?subcategory='.$adSubCategory->subCatByCat->id."&pricetitle=$priceData->price_title")); ?>">
+                                    <?php echo e($priceData->price_title); ?> </a>
+                            </li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
 
                 <?php else: ?>
                     <a class="<?php if($subCategoryInfo!='' && $subCategoryInfo->id==$adSubCategory->subCatByCat->id): ?> active-category <?php else: ?> '' <?php endif; ?>"
-                       href="<?php echo e(URL::to('ads/bangladesh/'.$category->link.'?subcategory='.$adSubCategory->subCatByCat->id)); ?>">
+                       href="<?php echo e(URL::to("ads/$locationName/".$category->link.'?subcategory='.$adSubCategory->subCatByCat->id)); ?>">
                         <?php echo e($adSubCategory->subCatByCat->sub_category_name); ?>
 
                         <?php if(!empty($adSubCategory->subCatByCat->totalSubCatAd)): ?>
@@ -60,13 +68,17 @@
                             0
                         <?php endif; ?>
                     </a>
-
                 <?php endif; ?>
 
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php else: ?>
-            <a href="javascript:void(0)"> No Sub-subcategory  </a>
-        <?php endif; ?>
+            </li>
+
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <li class="">
+                <a href="javascript:void(0)" class="dropdown-toggle">No Data Found !</a>
+
+            </li>
+                <?php endif; ?>
+        </ul>
     </div>
 
 </div>

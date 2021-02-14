@@ -6,7 +6,7 @@
         <serverdata>
           <mappings>
             <mapping deploy="/paibaaAppDev" local="$PROJECT_DIR$" web="/" />
-            <mapping deploy="/public_html/dev" local="$PROJECT_DIR$/public" web="" />
+            <mapping deploy="/public_html/dev" local="$PROJECT_DIR$/public" web="/" />
           </mappings>
         </serverdata>
       </paths>

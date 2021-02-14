@@ -10,6 +10,14 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
+    <style>
+        .nounderline{
+            text-decoration: none !important;
+        }
+        .badge-info{
+            background-color: #8BC34A;
+        }
+    </style>
 
     <div class="iner_breadcrumb p-t-0 p-b-0">
         <div class="container">
@@ -17,11 +25,7 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo e(URL::to('/')); ?>">Home</a></li>
                     <li class="breadcrumb-item"><a href="<?php echo e(URL::to('ads/bangladesh/'.$adDetails->postCategory->link)); ?>"><?php echo e($adDetails->postCategory->category_name); ?></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <a href="<?php echo e(URL::to('ads/bangladesh/'.$adDetails->postCategory->link.'?subcategory='.$adDetails->adSubCategory->first()->id)); ?>"><?php echo e($adDetails->adSubCategory->first()->sub_category_name); ?>
-
-                        </a>
-                    </li>
+                    
                     <li class="breadcrumb-item " aria-current="page"><?php echo e($adDetails->title); ?></li>
                 </ul>
             </nav>
@@ -61,12 +65,43 @@
                         <i class="fa fa-map-marker them-color"></i>
                         <?php
 
-                        $allLocations=$adDetails->adLocation->pluck('location_name')->toArray();
-                        foreach ($allLocations as $locationData){
-                            echo $locationData.' , ';
-                        }?>
+                        $allLocations=$adDetails->adLocation->pluck('url')->toArray();
+                        ?>
+
                     </p>
                     <br>
+                    Location:
+                    <?php $__empty_1 = true; $__currentLoopData = $allLocations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $allLocation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+
+                        <a href="<?php echo e(URL::to('ads/'."$allLocation".'/'.$adDetails->postCategory->link)); ?>" class="nounderline">
+                            <span class="badge badge-secondary"><?php echo e($allLocation); ?></span>
+                        </a>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <span>No Category</span>
+                    <?php endif; ?>
+
+
+                    <hr>
+                    Category:
+                        <?php $__empty_1 = true; $__currentLoopData = $adDetails->adSubCategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCatName): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <a href="<?php echo e(URL::to('ads/bangladesh/'.$adDetails->postCategory->link.'?subcategory='.$subCatName->id)); ?>" class="nounderline">
+                                <span class="badge badge-secondary"><?php echo e($subCatName->sub_category_name); ?></span>
+                            </a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <span>No Category</span>
+                            <?php endif; ?>
+
+                    <hr>
+                    Tags:
+                        <?php $__empty_1 = true; $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <a href="<?php echo e(URL::to('/tag/'.str_replace(' ','-',$tag))); ?>" class="nounderline">
+                                <span class="badge badge-secondary"><?php echo e($tag); ?></span>
+                            </a>
+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <span>No Tag</span>
+                        <?php endif; ?>
                 </div>
             <?php endif; ?>
 
@@ -87,7 +122,7 @@
                                         if ($adPostPrice->is_negotiable==1){$readOnly='true'; }else{$readOnly='false';}
                                         ?>
                                             <span class="rend-blog-price-type">
-                                                <a href="<?php echo e(URL::to('price/'.$adPostPrice->price_title)); ?>" class="order-price-title">
+                                                <a href="<?php echo e(URL::to('price/'.$adPostPrice->price_title.'?cat='.$adDetails->postCategory->link)); ?>" class="order-price-title">
                                                     <?php echo e($adPostPrice->price_title); ?>
 
 </a>
@@ -134,7 +169,7 @@
                                         <?php if(!Auth::check()): ?>
                                             <a href="<?php echo e(URL::to('/login?'.'od_rf='.Request::path())); ?>" class="price-request"> Request </a>
                                         <?php elseif(Auth::check() && Auth::user()->id==$adDetails->user_id): ?>
-                                            <span>This is your Ad</span>
+                                            <span>This is your Ad </span>
 
                                         <?php elseif(!Auth::check() || empty($priceNegotiation)): ?>
 
@@ -147,7 +182,7 @@
 
                                             <?php if(!Auth::check()): ?>
                                             &nbsp; <a href="<?php echo e(URL::to('/login?'.'od_rf='.Request::path())); ?>" class="price-request" title="Click here to <?php echo e($adDetails->postCategory->order_label); ?>" > <?php echo e($adDetails->postCategory->order_label); ?></a>
-                                                <?php else: ?>
+                                            <?php elseif(Auth::check() && Auth::user()->id!=$adDetails->user_id): ?>
                                                 <a href="javascript:void(0)" class="price-request" title="Click here to <?php echo e($adDetails->postCategory->order_label); ?>" onclick="makeOrder()" > <?php echo e($adDetails->postCategory->order_label); ?></a>
                                                 <?php endif; ?>
                                     </li>
@@ -157,28 +192,26 @@
                                 <?php endif; ?>
                         </div>
 
-                        <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
-                            <li class="meetup"><i class="fa fa-handshake-o" aria-hidden="true"></i> Meetup</li>
-                        </ul>
-                        <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
-                            <li class="meetup"><i class="fa fa-map-marker them-color"></i> <?php echo e($adDetails->address); ?></li>
-                        </ul>
 
                     </div>
-                    <hr>
+
                     <div class="description_box">
                         <?php echo $adDetails->description;?>
                     </div>
-
-                    <hr>Tags:
-                    <?php if(count($tags)>0): ?>
-
-                    <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <a href="<?php echo e(URL::to('/tag/'.str_replace(' ','-',$tag))); ?>">
-                            <span class="badge badge-secondary"><?php echo e($tag); ?></span>
-                        </a>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>
+                    <hr>
+                    <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
+                        <li class="meetup"><i class="fa fa-handshake-o" aria-hidden="true"></i> Phone &nbsp; </li>
+                    </ul>
+                    <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
+                        <li class="meetup"><i class="fa fa-mobile them-color"></i> <?php echo e($adDetails->contact); ?></li>
+                    </ul>
+                    <br>
+                    <ul class="list-unstyled d-inline-block float-left detail_left m-b-0">
+                        <li class="meetup"><i class="fa fa-handshake-o" aria-hidden="true"></i> Meetup</li>
+                    </ul>
+                    <ul class="list-unstyled d-inline-block m-l-40 detail_right  m-b-0">
+                        <li class="meetup"><i class="fa fa-map-marker them-color"></i> <?php echo e($adDetails->address); ?></li>
+                    </ul>
 
 
                 <!--Request Start Modal -->
@@ -441,7 +474,7 @@
     </section>
 
 
-
+<hr>
     <section class="description">
         <div class="container">
 
@@ -455,8 +488,6 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <!-- Description area -->
-                    <hr>
                     <h5 class=" badge-info p-1"> Comment</h5>
 
                     <section class="iner_breadcrumb p-t-20 p-b-20">
@@ -563,15 +594,14 @@
                         <!--  Chat Start -->
                         
                         <?php if(Auth::check() && (count($getChatReplayData)>0 || count($getChatOfferData)>0)): ?>
-                            <hr>
-                            <h6 class="title badge-info p-1 text-warning "> <i class="fa fa-comments-o" aria-hidden="true"></i> Chat</h6>
+                            <h6 class=" badge-info p-1 "> <i class="fa fa-comments-o" aria-hidden="true"></i> Chat</h6>
                                 <div class="card  bg-dark text-white">
                                     <div class="card-header">
                                         <div>
 
                                             <?php if(count($offerUsers)>0): ?>
                                                 <div class="">
-                                                    <label class="control-label text-info">Change Chat Partner</label>
+                                                    <label class="control-label price-request"> Chat Partner</label>
 
                                                     <?php echo e(Form::select('user_id',$offerUsers,$currentChatUser->id,['id'=>'CurrentUser','class'=>'form-control','required'=>true])); ?>
 
@@ -767,12 +797,10 @@
             <!-- Row  -->
             <div class="row">
                 <div class="col-md-3  m-b-10">
-                    <h5 class=" badge-success p-1">You might also like</h5>
+                    <h5 class=" price-request p-1">You might also like</h5>
                 </div>
             </div>
             <!-- Row  -->
-
-
 
             <div class="row">
                 <div class="col-md-10 col-lg-10">

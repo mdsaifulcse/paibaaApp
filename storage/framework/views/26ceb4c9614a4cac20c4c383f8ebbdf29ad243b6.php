@@ -1,4 +1,4 @@
-<?php $__env->startSection('title'); ?> Post Your Ad | Paibaa | Khojlei Paibaa | Shob Paibaa  <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> Edit Your Ad | Paibaa | Khojlei Paibaa | Shob Paibaa  <?php $__env->stopSection(); ?>
 
 <style>
     .select2-container{
@@ -45,7 +45,7 @@
                             <div class="profile_setting text-capitalize">
                                 <h3 class="text-primary"><i class="fa fa-list"></i> <?php echo e($categoryInfo->category_name); ?>
 
-                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="<?php echo e(URL::to('/ad-post')); ?>"><i class="fa fa-pencil"></i> Edit</a>
+                                     
                                 </h3>
                             </div>
                             <div class="title_edit text-capitalize"></div>
@@ -63,15 +63,35 @@
 
                                 <input id="categoryId" type="hidden" name="category_id" value="<?php echo e($categoryInfo->id); ?>">
 
+                                <div class="row form-group paddingTop15">
+                                    <label class="col-md-2"> Location <sup class="text-danger help-block with-errors">*</sup></label>
+
+                                    <div class="col-md-10">
+                                        <?php echo e(Form::text('location[]',$value=implode(',',$existLocation),['id'=>'locationField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your category and press Enter','required'=>false])); ?>
+
+
+                                        <ul id="locationFieldUl"></ul>
+                                        <span class="locationError text-danger"> </span>
+                                        <span class="taging-notes"> Type your location and press Enter. Max(5) </span>
+
+                                        <?php if($errors->has('location')): ?>
+                                            <span class="help-block">
+                                        <strong class="text-danger"><?php echo e($errors->first('location')); ?></strong>
+                                    </span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
                                 <?php if($categoryInfo->post_type==2): ?>
                                     <div class="row form-group">
                                         <label class="col-md-2"> Language <sup class="text-danger help-block with-errors">*</sup></label>
 
                                         <div class="col-md-10">
-                                            <?php echo e(Form::select('lang',['English'=>'English','বাংলা'=>'বাংলা'],$adData->lang,['class'=>'form-control','id'=>'lang','placeholder'=>'Select language','required'=>true])); ?>
-
+                                            <?php echo e(Form::text('lang',$value=old('lang',$adData->lang),['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Your preferred language, (Ex: English, Bengali)',
+                                                                                'required'=>true])); ?>
 
                                             <?php if($errors->has('lang')): ?>
+                                                <span class="help-block">
                                                 <strong class="text-danger"><?php echo e($errors->first('lang')); ?></strong>
                                                 </span>
                                             <?php endif; ?>
@@ -79,7 +99,7 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <div class="row form-group <?php echo e($errors->has('title') ? ' has-error' : ''); ?>">
+                                <div class="row <?php echo e($errors->has('title') ? ' has-error' : ''); ?>">
                                     <label for="title" class="col-md-2">Title <sup class=" text-danger help-block with-errors">*</sup> </label>
 
                                     <div class="col-md-10">
@@ -96,15 +116,15 @@
                                 </div>
 
                                 <div class="row paddingTop15">
-                                    <label class="col-md-2"> Sub-Category <sup class="text-danger help-block with-errors">*</sup></label>
+                                    <label class="col-md-2">Category <sup class="text-danger help-block with-errors">*</sup></label>
 
                                     <div class="col-md-10">
-                                        <?php echo e(Form::text('sub_category_name[]',$value=implode(',',$existPostSubCats),['id'=>'subCategoryField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your sub-category and press Enter','required'=>false])); ?>
+                                        <?php echo e(Form::text('sub_category_name[]',$value=implode(',',$existPostSubCats),['id'=>'subCategoryField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your category and press Enter','required'=>false])); ?>
 
 
                                         <ul id="subCategoryFieldUl"></ul>
                                         <span class="subCategoryError text-danger"> </span>
-                                        <span class="taging-notes"> Type your sub-category and press Enter. Max(5) </span>
+                                        <span class="taging-notes"> Type your category and press Enter. Max(5) </span>
 
                                         <?php if($errors->has('sub_category_name')): ?>
                                             <span class="help-block">
@@ -113,29 +133,6 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
-
-
-                                <div class="row paddingTop15">
-                                    <label class="col-md-2"> Location <sup class="text-danger help-block with-errors">*</sup></label>
-
-                                    <div class="col-md-10">
-                                        <?php echo e(Form::text('location[]',$value=implode(',',$existLocation),['id'=>'locationField','style'=>'display:none','class'=>'form-control type-pass','placeholder'=>'Type your sub-category and press Enter','required'=>false])); ?>
-
-
-                                        <ul id="locationFieldUl"></ul>
-                                        <span class="locationError text-danger"> </span>
-                                        <span class="taging-notes"> Type your location and press Enter. Max(5) </span>
-
-                                        <?php if($errors->has('location')): ?>
-                                            <span class="help-block">
-                                        <strong class="text-danger"><?php echo e($errors->first('location')); ?></strong>
-                                    </span>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-
-
-
 
 
                                 <div class="row form-group <?php echo e($errors->has('photo_one') ? ' has-error' : ''); ?>  <?php echo e($errors->has('photo_two') ? ' has-error' : ''); ?>  <?php echo e($errors->has('photo_three') ? ' has-error' : ''); ?>  <?php echo e($errors->has('photo_four') ? ' has-error' : ''); ?> add-image">
@@ -194,10 +191,25 @@
 
 
                                 <?php if($categoryInfo->post_type==1): ?>
+
                                     <div class="row form-group">
-                                        <label class="col-md-2">Meetup <sup class="text-danger help-block with-errors">*</sup></label>
+                                        <label class="col-md-2" title="Phone number">Phone <sup class="text-danger help-block with-errors">*</sup></label>
                                         <div class="col-md-10">
-                                            <?php echo e(Form::text('address',$value=$adData->address,['data-error'=>':Specific Address is Required','class'=>'form-control type-pass','placeholder'=>'Specific Address ','required'=>true])); ?>
+                                            <?php echo e(Form::text('contact',$value=old('contact',$adData->contact),['class'=>'form-control type-pass','placeholder'=>'Phone number here','required'=>true])); ?>
+
+                                            <?php if($errors->has('contact')): ?>
+                                                <span class="help-block">
+                                            <strong class="text-danger"><?php echo e($errors->first('contact')); ?></strong>
+                                        </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row form-group">
+                                        <label class="col-md-2">Meetup </label>
+                                        <div class="col-md-10">
+                                            <?php echo e(Form::text('address',$value=$adData->address,['class'=>'form-control type-pass','placeholder'=>'Specific Address ','required'=>false])); ?>
 
                                             <?php if($errors->has('address')): ?>
                                                 <span class="help-block">
@@ -206,11 +218,12 @@
                                             <?php endif; ?>
                                         </div>
                                     </div>
+
                                 <?php endif; ?>
 
                                 <?php if($categoryInfo->post_type==1): ?> <!--hide when category is special=blog -->
                                 <div class="row form-group  <?php echo e($errors->has('price') ? ' has-error' : ''); ?> select-price">
-                                    <label class="col-sm-2 label-title"><?php if($categoryInfo->category_name=='Need'): ?> Amount <?php else: ?> Price <?php endif; ?> <sup class="text-danger">*</sup></label>
+                                    <label class="col-sm-2 label-title"><?php if($categoryInfo->category_name=='Need'): ?> Pay <?php else: ?> Price <?php endif; ?> <sup class="text-danger">*</sup></label>
                                     <div class="col-sm-10">
                                         <div class="field_wrapper">
                                             <?php if(count($adData->adPostPrice)>0): ?>
@@ -487,7 +500,7 @@
                 allowSpaces: true,
                 tagLimit:3,
                 fieldName:"sub_category_name",
-                placeholderText:'Search Or type your sub-category',
+                placeholderText:'Search Or type your category',
                 //autocomplete: {source:country_list},
                 autocomplete: {
                     source: function( request, response ) {
@@ -553,7 +566,7 @@
     <script>
         $('.type-pass').on('keypress click change',function() {
             $('#postSubmit').attr('type','submit')
-            $('#postSubmit').html('Post Your Ad')
+            $('#postSubmit').html('Update Your Ad')
         });
     </script>
 
@@ -562,7 +575,7 @@
             if($('#subCategoryFieldUl li').length<2){
                 $('#errorPhoto').html('');
 
-                $('.subCategoryError').html('Sub-Category is required.');
+                $('.subCategoryError').html('Category is required.');
 
                 return false
             }else if($('#locationFieldUl li').length<2){

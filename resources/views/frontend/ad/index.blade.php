@@ -29,9 +29,17 @@
             margin: 0px;
             text-decoration: none;
         }
+        div.scrollmenu a.active
+        {
+            background-color: #686767;
+            border: 1px solid #e91e63;
+        }
 
         div.scrollmenu a:hover {
             background-color: #777;
+        }
+        .active-category{
+         background-color: #8bc34a !important;
         }
 
         /* Fixed sidenav, full height */
@@ -48,30 +56,32 @@
         }
 
         /* Style the sidenav links and the dropdown button */
-        .sidenav a, .dropdown-btn {
-            padding: 6px 8px 6px 16px;
-            margin-bottom: 5px;
+        .sidenav a, .dropdown-btn,.nav .nav-pills .dropdown-toggle,.nav .nav-pills.dropdown {
+            padding: 2px 2px 2px 2px;
+            margin-bottom: 2px;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 13px;
             color: #fff !important;
             display: block;
             border: none;
-            background: #607D8B;
+            background-color: #e91e63de;
             width: 100%;
             text-align: left;
             cursor: pointer;
             outline: none;
         }
 
+
         /* On mouse-over */
         .sidenav a:hover, .dropdown-btn:hover {
-            color: #f1f1f1;
+            color: #ffffff !important;
+            background-color: #8bc34a;
         }
 
         /* Main content */
         .main {
             margin-left: 200px; /* Same as the width of the sidenav */
-            font-size: 15px; /* Increased text to enable scrolling */
+            font-size: 13px; /* Increased text to enable scrolling */
             padding: 0px 10px;
         }
 
@@ -80,7 +90,7 @@
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container {
             display: none;
-            background-color: #de0959;
+            background-color: #f19ab8;
             padding-left: 8px;
             width: 220px;
         }
@@ -102,8 +112,52 @@
         /* Some media queries for responsiveness */
         @media screen and (max-height: 450px) {
             .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 15px;}
+            .sidenav a {font-size: 13px;}
         }
+
+        /*  new menu 01-02-2021  */
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+        .dropdown-menu .sub-menu {
+            left: 100%;
+            position: absolute;
+            top: 0;
+            visibility: hidden;
+            margin-top: -1px;
+        }
+        .dropdown-menu li:hover .sub-menu {
+            visibility: visible;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .nav-pills{
+            display: block;
+        }
+        .nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+            margin-top: 0;
+        }
+        .navbar .sub-menu:before {
+            border-bottom: 7px solid transparent;
+            border-left: none;
+            border-right: 7px solid rgba(0, 0, 0, 0.2);
+            border-top: 7px solid transparent;
+            left: -7px;
+            top: 10px;
+        }
+        .navbar .sub-menu:after {
+            border-top: 6px solid transparent;
+            border-left: none;
+            border-right: 6px solid #fff;
+            border-bottom: 6px solid transparent;
+            left: 10px;
+            top: 11px;
+            left: -6px;
+        }
+
+
     </style>
 
     <!-- location start -->
@@ -202,7 +256,8 @@
                     @elseif($activeAd->postCategory->ad_view_type==2) <!-- ========================= For List view =================== -->
 
                         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
-                            <div class="featured-parts rounded m-t-10 m-b-10">
+                            <div class="featured-parts featured-parts0 rounded m-t-10 m-b-10">
+
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="featured-img">
@@ -220,7 +275,8 @@
                                     <div class="col-md-9">
                                         <div class="featured-text">
                                             <div class="text-top d-flex justify-content-between ">
-                                                <div class="heading"> <a href="{{URL::to('/ad/'.$activeAd->link)}}" title="{{$activeAd->title}}">{{$activeAd->title}}</a>
+                                                <div class="heading">
+                                                    <a href="{{URL::to('/ad/'.$activeAd->link)}}" title="{{$activeAd->title}}">{{$activeAd->title}}</a>
 
                                                     @if($activeAd->postCategory->post_type==1) <!-- Special Category -->
                                                     <ul class="deal-price list-view-price-request list-unstyled text-capitalize m-b-5 m-t-15">
@@ -235,7 +291,7 @@
                                                 </div>
                                             </div>
 
-                                            <a  href="{{URL::to('/ad/'.$activeAd->link)}}" class="list-view-short-details">
+                                            <a  href="{{URL::to('/ad/'.$activeAd->link)}}" class="list-view-short-details" title="{{$activeAd->title}}">
                                                 <p class="">
                                                     <?php
                                                     if (strlen($activeAd->description) != strlen(utf8_decode($activeAd->description)))
@@ -352,24 +408,6 @@
 @endsection
 
 @section('script')
-
-    <script>
-        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        var i;
-
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
-                this.classList.toggle("sub-menu-active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
-                }
-            });
-        }
-    </script>
 
     <script>
         function makeOffer(adPostId) {

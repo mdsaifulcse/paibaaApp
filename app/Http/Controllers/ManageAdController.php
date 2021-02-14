@@ -267,6 +267,35 @@ class ManageAdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function generateLink($title, $authId=null)
+    {
+        $link=str_replace(' , ', '-', $title);
+        $link=str_replace(', ', '-', $link);
+        $link=str_replace(' ,', '-', $link);
+        $link=str_replace(',', '-', $link);
+        $link=str_replace('/', '-', $link);
+        $link=rtrim($link,' ');
+        $link=str_replace(' ', '-', $link);
+        $link=str_replace('.', '', $link);
+        $link=substr($link,0,30);
+        $link=strtolower($link);
+
+        if (strlen($title) != strlen(utf8_decode($title))){
+            $link=substr($title,0,80);
+            $link=strtolower($link);
+            $link= $this->make_slug($link);
+        }
+
+        if ($authId!=null)
+        {
+            return $link.'-'.$authId;
+        }else{
+            return $link;
+        }
+    }
+
+
     public function update(Request $request, $id)
     {
         //return $request;
@@ -282,35 +311,19 @@ class ManageAdController extends Controller
 
         date_default_timezone_set('Asia/Dhaka');
 
-        $link=str_replace(' , ', '-', $input['title']);
-        $link=str_replace(', ', '-', $link);
-        $link=str_replace(' ,', '-', $link);
-        $link=str_replace(',', '-', $link);
-        $link=str_replace('/', '-', $link);
-        $link=rtrim($link,' ');
-        $link=str_replace(' ', '-', $link);
-        $link=str_replace('.', '', $link);
-        $link=substr($link,0,30);
-        $link=strtolower($link);
-        if (strlen($input['title']) != strlen(utf8_decode($input['title']))){
-            $link=substr($input['title'],0,80);
-            $link=strtolower($link);
-            $link= $this->make_slug($link);
-        }
-
-        $input['link']=$link.'-'.Auth::user()->id.'-'.date('ymdHis');
+        $input['link']= $this->generateLink($input['title'],Auth::user()->id);
 
         $validator = Validator::make($input, [
             'category_id'    => 'required|exists:categories,id|numeric',
             'title'              => 'required|max:100',
-            'address'            => 'required_if:category_id,!=5|max:120',
+            'address'            => 'nullable|max:120',//'required_if:category_id,!=5|max:120',
             'tag'                => 'nullable|max:100',
             'description'        => 'required|max:5000',
             'photo_one'          => 'nullable|image',
             'photo_two'          => 'image',
             'photo_three'        => 'image',
             'photo_four'         => 'image',
-            'link'               => 'unique:ad_post',
+            'link'               => "unique:ad_post,link,$id",
             'delivery_fee'       => 'required_if:deliverable,==,1'
         ]);
         if ($validator->fails()) {
@@ -330,9 +343,7 @@ class ManageAdController extends Controller
             $input['price']=isset($request->price)?$request->price[0]:'';
 
 
-
             // --- relational table  start---
-
 
 
             // category wise ad count --------
@@ -432,16 +443,8 @@ class ManageAdController extends Controller
 
                     $location = Location::where(['location_name' =>$locations[$i]])->first();
                     if (empty($location)){
-                        $link=str_replace(' , ', '-', $locations[$i]);
-                        $link=str_replace(', ', '-', $link);
-                        $link=str_replace(' ,', '-', $link);
-                        $link=str_replace(',', '-', $link);
-                        $link=str_replace('/', '-', $link);
-                        $link=rtrim($link,' ');
-                        $link=str_replace(' ', '-', $link);
-                        $link=str_replace('.', '', $link);
-                        $link=substr($link,0,50);
-                        $link=strtolower($link);
+
+                        $link=$this->generateLink($locations[$i]);
 
                         $location=Location::create(['location_name'=>$locations[$i],'url'=>$link]);
                     }
@@ -517,8 +520,6 @@ class ManageAdController extends Controller
             }
 
             $adPhotos->update($photoPaths);
-
-
 
 
             $bug=0;

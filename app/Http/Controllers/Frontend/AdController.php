@@ -18,7 +18,23 @@ use Validator,Auth,DB,DataLoad;
 
 class AdController extends Controller
 {
-    public function categoryWiseAds(Request $request, $divisionLink,$catLink){
+    public function categoryWiseAds(Request $request, $divisionLink,$catLink)
+    {
+        $category=Category::with('subCategoryData')->where(['link'=>$catLink])->first();
+        if ($category==''){
+            return redirect()->back()->with('error','Something went wrong on category !');
+        }
+
+        $location='bangladesh';
+        if ($divisionLink!='' && $divisionLink!='bangladesh')
+        {
+            $location=Location::where('url',$divisionLink)->first();
+        }
+;
+        if ($location==''){
+            return redirect()->back()->with('error','Something went wrong on location !');
+        }
+
 
         $category=Category::with('subCategoryData')->where(['link'=>$catLink])->first();
         if ($category==''){
@@ -51,10 +67,16 @@ class AdController extends Controller
 //        }
 
 
-        $activeAds=AdPost::with('postAuthor','postCategory','postPhoto','adSubCategory','adLocation','adPostPrice')
+        $activeAds=AdPost::with('postAuthor','postCategory','postPhoto','adSubCategory','adLocation','adPostPrice','adPostLocation')
             ->select('ad_post.title','ad_post.price','ad_post.link','ad_post.id','ad_post.user_id','ad_post.category_id')
             ->where(['ad_post.is_approved'=>1,'ad_post.status'=>1,'ad_post.category_id'=>$category->id])
             ->orderBy('ad_post.id','DESC');
+
+        if ($location!='bangladesh'){
+            $activeAds=$activeAds->whereHas('adPostLocation',function ($q)use($location){
+                $q->where('ad_post_locations.location_id',$location->id);
+            });
+        }
 
         // check sub-category
         $subCategoryInfo='';
@@ -96,6 +118,7 @@ class AdController extends Controller
         }else{
             $activeAds=$activeAds->limit(24)->get();
         }
+
 
         return view('frontend.ad.index',compact('category','activeAds','adSubCategories','subCategoryInfo','categoryWiseLocations'));
     }
@@ -259,7 +282,19 @@ class AdController extends Controller
         return view('frontend.ad.author-all-ads',compact('userProfile','activeAds'));
     }
 
-    public function showAdsByAdPriceTitle($price){
+    public function showAdsByAdPriceTitle($price,Request $request)
+    {
+        if ( !isset($request->cat))
+        {
+            return redirect()->back()->with('error','Something went wrong');
+        }
+
+       $category=Category::with('subCategoryData')->where('link',$request->cat)->first();
+
+        if (empty($category))
+        {
+            return redirect('/')->with('error','Category is invalid');
+        }
 
         $priceData='';
         $activePriceAds=[];
@@ -268,15 +303,13 @@ class AdController extends Controller
             $activePriceAds=AdPost::with('postAuthor','postCategory','postPhoto','adSubCategory','adLocation','adPostPrice')
                 ->leftJoin('ad_post_prices','ad_post_prices.ad_post_id','ad_post.id')
                 ->select('ad_post.title','ad_post.price','ad_post.link','ad_post.id','ad_post.category_id')
-                ->where(['ad_post.is_approved'=>1,'ad_post.status'=>1])->where('ad_post_prices.price_title','like','%'.$priceData.'%')
-                ->orderBy('ad_post.id','DESC')->limit(10)->get();
+                ->where(['ad_post.category_id'=>$category->id,'ad_post.is_approved'=>1,'ad_post.status'=>1])->where('ad_post_prices.price_title','like','%'.$priceData.'%')
+                ->orderBy('ad_post.id','DESC')->limit(20)->get();
         }
 
         if ( !count($activePriceAds)>0 ){
             return redirect()->back()->with('error','Something went wrong !');
         }
-
-        $category=Category::with('subCategoryData')->findOrFail($activePriceAds[0]->category_id);
 
         // category & sub-category wise ad count
         $adSubCategories=AdPostSubCategory::with('subCatByCat')
