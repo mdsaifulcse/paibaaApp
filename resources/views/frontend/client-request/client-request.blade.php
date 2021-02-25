@@ -1,9 +1,15 @@
 @extends('frontend.master')
 
-@section('title') My All Ad | Khojlei Paibaa | Shob Paibaa  @endsection
+@section('title') My Client Request | Khojlei Paibaa | Shob Paibaa  @endsection
 
 
 @section('content')
+
+    <style>
+        td{
+            white-space: normal !important;
+        }
+    </style>
 
     <!-- breadcrumb -->
     <div class="iner_breadcrumb bg-light p-t-10 p-b-10">
@@ -11,7 +17,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{URL::to('/')}}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">My Ads</li>
+                    <li class="breadcrumb-item active" aria-current="page">Client Request</li>
                 </ol>
             </nav>
         </div>
@@ -31,7 +37,7 @@
 
                     <div class="dashboard_main">
                         <div class="dashboard_heding">
-                            <h3> My All Ads </h3>
+                            <h3> My Client Request </h3>
                         </div>
                         {{--<div class="row">--}}
                             {{--<div class=" col-md-12 all_ads">--}}
@@ -49,64 +55,53 @@
                             <div id="recent-transactions" class="col-12"> <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements"> </div>
                                 <div class="table table-responsive">
-                                    <table class="table table-bordered table-xl mb-0 table-responsive">
+                                    <table class="table table-xl table-bordered mb-0 table-responsive">
                                         <thead>
                                         <tr>
-                                            <th class="border-top text-capitalize ml-44">
-                                                {{--<input class="form-check-input" value="" type="checkbox">--}}
-                                                photos
-                                            </th>
-                                            <th class="border-top text-capitalize">title </th>
-                                            <th class="border-top text-capitalize">category </th>
-                                            <th class="border-top text-capitalize">ad status </th>
-                                            <th class="border-top text-capitalize">price </th>
-                                            <th class="border-top text-capitalize">action</th>
+
+                                            <th class="border-top text-capitalize">Sl</th>
+                                            <th class="border-top text-capitalize" width="50%">Message </th>
+                                            <th class="border-top text-capitalize">Related Ad </th>
+                                            <th class="border-top text-capitalize">Client </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if(count($adPost)>0)
-                                        @foreach($adPost as $data)
+                                        @if(count($clientRequests)>0)
+                                        @foreach($clientRequests as $key =>$data)
                                         <tr>
+                                            <td class="text-truncate">{{$key+1}}</td>
+                                            <td class="text-truncate"><a href="{{url('/ad/'.$data->priceNegotiationOfAds->link.'?user='.encrypt($data->request_by).'&offer='.encrypt($data->offer))}}">{{$data->request_message}}</a>
+                                            </td>
+
+                                            <td class="text-truncate">
+                                                <a href="{{url('/ad/'.$data->priceNegotiationOfAds->link.'?user='.encrypt($data->request_by).'&offer='.encrypt($data->offer))}}"><p>{{$data->priceNegotiationOfAds->title}}</p></a>
+                                                </td>
+
                                             <td class="text-truncate">
                                                 <div class="form-check">
                                                     {{--<input class="form-check-input" value=""  type="checkbox">--}}
                                                     <div class="recent_img" style="width: 60px;">
-                                                        @if(file_exists('images/post_photo/small/'.$data->postPhoto->photo_one))
-                                                            <img class="img-fluid rounded-top" src="{{asset('images/post_photo/small/'.$data->postPhoto->photo_one)}}" alt="{{$data->title}}" title="{{$data->title}}">
+                                                        <a href="{{url('/ad/'.$data->priceNegotiationOfAds->link.'?user='.encrypt($data->request_by).'&offer='.encrypt($data->offer))}}">
+                                                            @if(!empty($data->offeredUser->image))
+                                                                <img class="img-fluid rounded-top" src="{{asset($data->offeredUser->image)}}" alt="{{$data->offeredUser->name}}" title="{{$data->offeredUser->name}}">
 
-                                                        @else
-                                                            <img class="img-fluid rounded-top" src="{{asset('/images/default/photo.png')}}" alt="{{$data->title}}" title="{{$data->title}}">
-                                                        @endif
+                                                            @else
+                                                                <img class="img-fluid rounded-top" src="{{asset('/images/default/photo.png')}}" alt="{{$data->offeredUser->name}}" title="{{$data->offeredUser->name}}">
+                                                            @endif
+
+                                                            <span>{{$data->offeredUser->name}}</span>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="text-truncate"><p>{{$data->title}}</p></td>
-                                            <td class="text-truncate">{{$data->postCategory->category_name}}</td>
-                                            <td>
-                                                @if($data->status==1 && $data->is_approved==1)
-                                                <button type="button" class="btn btn-sm active_btn">Active</button>
-                                                    @else
-                                                    <button type="button" class="btn btn-sm btn-warning" title="Your ad is pending or Inactive">Inactive</button>
-                                                @endif
-                                            </td>
-                                            <td class="text-truncate"><strong>{{$data->price}}</strong></td>
-                                            <td class="text-truncate">
-                                                {!! Form::open(array('route' => ['ad-post.destroy',$data->id],'method'=>'DELETE','id'=>"deleteForm$data->id")) !!}
 
-                                                <span>
-                                                <button type="button" value="butten"><a href="{{URL::to('ad-post/'.$data->id.'/edit')}}" title="Click here to edit this ad">  <i class="fa fa-pencil"></i> </a>  </button>
-                                                </span>
-
-                                                <span>
-                                                <button type="button" value="butten" onclick='return deleteConfirm("deleteForm{{$data->id}}")' title="Click here to delete this ad">  <i class="fa fa-trash"></i></button>
-                                                </span>
-
-                                                {!! Form::close() !!}
-
-
-                                            </td>
                                         </tr>
                                         @endforeach
+                                            @else
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Client Request Found !</td>
+                                            </tr>
+
                                             @endif
 
                                         </tbody>
@@ -117,7 +112,7 @@
                     </div>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center m-t-20 m-b-50">
-                            {{$adPost->render()}}
+                            {{$clientRequests->render()}}
                         </ul>
                     </nav>
                     <div class="single-sidebar m-b-50"> <img class="add_img img-fluid" src="{{asset('/frontend')}}/images/discount-img.png" alt="Classified Plus"> </div>

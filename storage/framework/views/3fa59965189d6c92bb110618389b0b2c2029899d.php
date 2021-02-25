@@ -102,6 +102,12 @@
                                 <?php echo e(Form::password('password',['class'=>'form-control only-border-bottom','placeholder'=>'Password *','min'=>8,'required'=>true])); ?>
 
 
+                                <?php if($errors->has('mobile')): ?>
+                                    <span class="help-block">
+                                        <strong class="text-danger"><?php echo e($errors->first('mobile')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+
                             </div>
                         </div>
 

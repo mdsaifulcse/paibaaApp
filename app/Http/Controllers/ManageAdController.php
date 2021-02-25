@@ -44,10 +44,10 @@ class ManageAdController extends Controller
 
     public function showAllAds(){
         $allApprovedAds=AdPost::leftJoin('users','users.id','ad_post.user_id')
-        ->leftJoin('sub_category','sub_category.id','ad_post.sub_category_id')
-        ->leftJoin('categories','categories.id','sub_category.category_id')
+        //->leftJoin('sub_category','sub_category.id','ad_post.sub_category_id')
+        ->leftJoin('categories','categories.id','ad_post.category_id')
         ->leftJoin('post_photos','ad_post.id','post_photos.ad_post_id')
-            ->select('users.name','users.mobile','categories.category_name','sub_category.sub_category_name','post_photos.photo_one','ad_post.*')
+            ->select('users.name','users.mobile','categories.category_name','post_photos.photo_one','ad_post.*')
             ->orderBy('ad_post.id','DESC')->where(['is_approved'=>1]);
 
         return DataTables::of($allApprovedAds)
@@ -72,7 +72,8 @@ class ManageAdController extends Controller
               <ul class="dropdown-menu action-dropdown" aria-labelledby="dLabel">
                 
                 <li>
-                <a  href="{{URL::to(\'manage-ad/\'.$id)}}/edit" title="Click here to update ad information" class="btn btn-warning btn-xs" ><i class="fa fa-pencil"></i> Edit</a>
+                <a  href="{{URL::to(\'manage-ad/\'.$id)}}/edit" title="Click here to update ad information" class="btn btn-warning btn-xs" style="display: inline-flex;
+padding: 3px 5px;"><i class="fa fa-pencil"></i>Edit</a>
                 </li>
                 <li>
                     {!!Form::open(array(\'route\'=>[\'manage-ad.destroy\',"$id"],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id"))!!}
@@ -268,8 +269,18 @@ class ManageAdController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    function make_slug($string) {
+        return preg_replace('/\s+/u', '-', trim($string));
+    }
+
     public function generateLink($title, $authId=null)
     {
+        if(strlen($title) != mb_strlen($title, 'utf-8'))
+        {
+            $title=date('dmyHis');
+        }
+
+
         $link=str_replace(' , ', '-', $title);
         $link=str_replace(', ', '-', $link);
         $link=str_replace(' ,', '-', $link);
@@ -278,6 +289,9 @@ class ManageAdController extends Controller
         $link=rtrim($link,' ');
         $link=str_replace(' ', '-', $link);
         $link=str_replace('.', '', $link);
+        $link=str_replace('?', '-', $link);
+        $link=str_replace('?', '-', $link);
+        $link=str_replace('&', '-', $link);
         $link=substr($link,0,30);
         $link=strtolower($link);
 

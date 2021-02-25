@@ -263,8 +263,19 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" class="buttons login_btn" name="login" value="Continue">Send Request </button>
+                                        @if(Auth::check() && Auth::user()->status==0)
 
+                                            <p class="text-center m-b-10">
+                                                <span class="text-danger">Your profile is not complete, Please complete</span>
+                                                <a href="{{URL::to('my-profile')}}" class="price-request"> Profile </a>
+                                            </p>
+
+                                            <?php $submit='button'?>
+                                        @else
+                                            <?php $submit='submit'?>
+                                                <button type="{{$submit}}" class="buttons login_btn" name="login" value="Continue">Send Request </button>
+
+                                        @endif
                                     </div>
 
                                     {!! Form::close() !!}
@@ -442,8 +453,21 @@
                                         </div><!-- end row -->
                                         <div class="form-group">
 
-                                            <button type="submit" class="buttons login_btn"
-                                                    name="login" value="Continue" onclick="return confirm('Please Check Again') ">Submit {{$adDetails->postCategory->order_label}} </button>
+                                            @if(Auth::check() && Auth::user()->status==0)
+
+                                                <p class="text-center m-b-10">
+                                                    <span class="text-danger">Your profile is not complete, Please complete</span>
+                                                    <a href="{{URL::to('my-profile')}}" class="price-request"> Profile </a>
+                                                </p>
+
+                                                <?php $submit='button'?>
+                                            @else
+                                                <?php $submit='submit'?>
+                                                    <button type="{{$submit}}" class="buttons login_btn"
+                                                            name="login" value="Continue" onclick="return confirm('Please Check Again') ">Submit {{$adDetails->postCategory->order_label}} </button>
+                                            @endif
+
+
 
                                         </div>
 

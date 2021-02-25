@@ -67,6 +67,8 @@ Route::middleware(['auth','disablepreventback','client','https'])->group(functio
     Route::get('load-area-by-division-town-on-ad-post/{divisionTown}','Frontend\AdPostController@loadAreaByDivisionTown');
 
     Route::get('my-ads','Frontend\AdPostController@myAllPost');
+    Route::get('my-sent-request','Frontend\PriceNegotiationController@allRequestSentByMe');
+    Route::get('my-client-request','Frontend\PriceNegotiationController@clientAllRequest');
 
     Route::get('load-sub-category-list/{categoryId}','Frontend\AdPostController@loadSubCategory');
 

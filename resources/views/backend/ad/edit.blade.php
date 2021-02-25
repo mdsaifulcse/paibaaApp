@@ -60,13 +60,15 @@
 
                                             <div class="col-md-10">
                                                 {{Form::text('lang',$value=old('lang',$adData->lang),['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Your preferred language, (Ex: English, Bengali)',
-                                                                                                                                'required'=>true])}}
+                                                                                    'required'=>true])}}
                                                 @if ($errors->has('lang'))
-                                                    <strong class="text-danger">{{ $errors->first('lang') }}</strong>
-                                                    </span>
+                                                    <span class="help-block">
+                                                <strong class="text-danger">{{ $errors->first('lang') }}</strong>
+                                                </span>
                                                 @endif
                                             </div>
                                         </div>
+
                                     @endif
 
 

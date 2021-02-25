@@ -18,7 +18,7 @@
                             <a href="{{url('all-ads')}}" class="btn btn-primary btn-sm pull-right"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Go Approved Ads </a>
                         </div>
                     </div>
-                    <div class="box-body ">
+                    <div class="box-body table-responsive">
                         @if(count($adPost)>0)
                         <table class="table table-striped table-hover table-bordered center_table" id="my_table">
                             <thead>

@@ -25,7 +25,7 @@ class CreatePriceNegotiationsTable extends Migration
             $table->foreign('request_to')->references('id')->on('users');
 
             $table->double('price',10,2)->default(0);
-            $table->string('request_message',255)->nullable();
+            $table->text('request_message')->nullable();
             $table->string('price_message',255)->nullable();
             $table->tinyInteger('offer',false,1)->comment('1=Offer, 2=Replay');
             $table->tinyInteger('status',false,1)->comment('0=Unread, 2=Read');

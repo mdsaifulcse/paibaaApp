@@ -61,15 +61,17 @@
                                             <label class="col-md-2"> Language <sup class="text-danger help-block with-errors">*</sup></label>
 
                                             <div class="col-md-10">
-                                                <?php echo e(Form::select('lang',['English'=>'English','বাংলা'=>'বাংলা'],$adData->lang,['class'=>'form-control','id'=>'lang','placeholder'=>'Select language','required'=>true])); ?>
-
+                                                <?php echo e(Form::text('lang',$value=old('lang',$adData->lang),['id'=>'title','class'=>' form-control type-pass','placeholder'=>'Your preferred language, (Ex: English, Bengali)',
+                                                                                    'required'=>true])); ?>
 
                                                 <?php if($errors->has('lang')): ?>
-                                                    <strong class="text-danger"><?php echo e($errors->first('lang')); ?></strong>
-                                                    </span>
+                                                    <span class="help-block">
+                                                <strong class="text-danger"><?php echo e($errors->first('lang')); ?></strong>
+                                                </span>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
+
                                     <?php endif; ?>
 
 

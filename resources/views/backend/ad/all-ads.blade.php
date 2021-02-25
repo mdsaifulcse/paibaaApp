@@ -25,14 +25,13 @@
                             <a href="{{url('manage-ad')}}" class="btn btn-primary btn-sm pull-right"> <i class="fa fa-hourglass-start" aria-hidden="true"></i> Go Pending Ads </a>
                         </div>
                     </div>
-                    <div class="box-body ">
+                    <div class="box-body table-responsive">
                         <table class="table table-striped table-hover table-bordered center_table" id="allAds">
                             <thead>
                             <tr>
                                 <th>SL</th>
                                 <th>Photo</th>
                                 <th width="20%">Title</th>
-                                <th>Sub.Category</th>
                                 <th>Category</th>
                                 <th>Author Name</th>
                                 <th>Author Mobile</th>
@@ -68,7 +67,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     { data: 'Photo'},
                     { data: 'title',name:'ad_post.title'},
-                    { data: 'sub_category_name',name:'sub_category.sub_category_name'},
+                    //{ data: 'sub_category_name',name:'sub_category.sub_category_name'},
                     { data: 'category_name',name:'categories.category_name'},
                     { data: 'name',name:'users.name'},
                     { data: 'mobile',name:'users.mobile'},

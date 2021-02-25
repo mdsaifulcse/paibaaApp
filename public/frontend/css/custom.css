@@ -61,7 +61,7 @@
     top: 10px !important;
 }
 .my-account-dropdown > ul li a, .notification > ul li a{
-    padding: 8px;
+    padding:1px 5px;
     color: #c10048;
     font-size: 14px;
     font-weight: 400;

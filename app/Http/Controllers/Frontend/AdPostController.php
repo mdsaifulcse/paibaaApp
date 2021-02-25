@@ -113,7 +113,11 @@ class AdPostController extends Controller
 
     public function generateLink($title, $authId=null)
     {
-        $link=str_replace(' , ', '-', $title);
+        if(strlen($title) != mb_strlen($title, 'utf-8'))
+        {
+            $title=date('dmyHis');
+        }
+        $link=str_replace(' , ', '-', utf8_encode($title));
         $link=str_replace(', ', '-', $link);
         $link=str_replace(' ,', '-', $link);
         $link=str_replace(',', '-', $link);
@@ -121,6 +125,9 @@ class AdPostController extends Controller
         $link=rtrim($link,' ');
         $link=str_replace(' ', '-', $link);
         $link=str_replace('.', '', $link);
+        $link=str_replace('?', '-', $link);
+        $link=str_replace('?', '-', $link);
+        $link=str_replace('&', '-', $link);
         $link=substr($link,0,30);
         $link=strtolower($link);
 
@@ -357,6 +364,7 @@ class AdPostController extends Controller
 
 
         date_default_timezone_set('Asia/Dhaka');
+
 
         $input['link']= $this->generateLink($input['title']);
 

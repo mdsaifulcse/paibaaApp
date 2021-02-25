@@ -121,6 +121,7 @@ class AdPostController extends Controller
         $link=rtrim($link,' ');
         $link=str_replace(' ', '-', $link);
         $link=str_replace('.', '', $link);
+        $link=str_replace('?', '-', $link);
         $link=substr($link,0,30);
         $link=strtolower($link);
         $input['link']=$link.'-'.Auth::user()->id.'-'.date('ymdHis');

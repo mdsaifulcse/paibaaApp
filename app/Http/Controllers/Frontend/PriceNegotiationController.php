@@ -69,9 +69,24 @@ class PriceNegotiationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function allRequestSentByMe()
     {
-        //
+
+        $mySentRequests=PriceNegotiation::with('priceNegotiationOfAds','replayUser')
+            ->where('request_by',\Auth::user()->id)->groupBy('request_to')
+            ->orderBy('id','DESC')->paginate(20);
+        return view('frontend.client-request.my-sent-request',compact('mySentRequests'));
+
+    }
+
+    public function clientAllRequest()
+    {
+
+        $clientRequests=PriceNegotiation::with('priceNegotiationOfAds','offeredUser')
+            ->where('request_to',\Auth::user()->id)->groupBy('request_by')
+            ->orderBy('id','DESC')->paginate(20);
+        return view('frontend.client-request.client-request',compact('clientRequests'));
+
     }
 
     /**

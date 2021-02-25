@@ -141,7 +141,7 @@ class AdController extends Controller
             ->leftJoin('location_wise_ad_counts','location_wise_ad_counts.location_id','locations.id')
             ->select('ad_post_locations.location_id')
             ->where('locations.location_name', 'like', '%' . $request->locationKeyword . '%')
-            ->where(['ad_post.status'=>1,'ad_post.is_approved'=>1])
+            ->where(['ad_post_locations.category_id'=>$category->id,'ad_post.status'=>1,'ad_post.is_approved'=>1])
             ->groupBy('ad_post_locations.location_id')->orderBy('location_wise_ad_counts.total_ad','DESC')->limit(30);
 
         if (!empty($category)) {
@@ -154,7 +154,9 @@ class AdController extends Controller
     }
 
 
-    public function getNavSubCategoryData($category,Request $request){
+    public function getNavSubCategoryData($category,Request $request)
+    {
+
         $category=Category::where('category_name',$category)->first();
 
         $subCategoryInfo='';
@@ -173,7 +175,8 @@ class AdController extends Controller
         }
 
         $adSubCategories=$adSubCategories->get();
-        return view('frontend.ad.search-nav-subcategory',compact('category','adSubCategories','subCategoryInfo'));
+        $location=$request->location;
+        return view('frontend.ad.search-nav-subcategory',compact('category','location','adSubCategories','subCategoryInfo'));
     }
 
     public function singleAdDetails(Request $request, $adLink){
@@ -195,33 +198,35 @@ class AdController extends Controller
             $priceNegotiation=PriceNegotiation::select('ad_post_id','request_by')->where(['request_by'=>Auth::user()->id,'ad_post_id'=>$adDetails->id])->first();
 
             // See Chat Replay Data  --------------------
-            if ((isset($request->user) && isset($request->offer)) && decrypt($request->offer)==2 ){
+            if ((isset($request->user) && isset($request->offer)) && decrypt($request->offer)==2 )
+            {
 
                 $offer=decrypt($request->offer);
                 $currentChatUser=User::findOrFail(decrypt($request->user));
                 $getChatReplayData=PriceNegotiation::with('priceNegotiationOfAds','offeredUser','replayUser')->orderBy('price_negotiations.id','DESC')
                     ->where(['request_by'=>Auth::user()->id,'request_to'=>$adDetails->user_id, 'ad_post_id'=>$adDetails->id])
-                    ->get();
+                    ->limit(100)->get();
 
                 PriceNegotiation::where(['request_by'=>Auth::user()->id,'offer'=>2,'ad_post_id'=>$adDetails->id])->update(['status'=>1]);
             }else{
 
                 $getChatReplayData=PriceNegotiation::with('priceNegotiationOfAds','offeredUser','replayUser')->orderBy('price_negotiations.id','DESC')
-                    ->where(['request_by'=>Auth::user()->id,'request_to'=>$adDetails->user_id, 'ad_post_id'=>$adDetails->id])->get();
+                    ->where(['request_by'=>Auth::user()->id,'request_to'=>$adDetails->user_id, 'ad_post_id'=>$adDetails->id])->limit(100)->get();
                 $offer=2;
                 $currentChatUser=User::findOrFail($adDetails->user_id);
             }
 
 
             // See Offer Data ---------------
-            if ((isset($request->user) && isset($request->offer)) && decrypt($request->offer)==1 ){
+            if ((isset($request->user) && isset($request->offer)) && decrypt($request->offer)==1 )
+            {
 
                 $offer=decrypt($request->offer);
                 $currentChatUser=User::findOrFail(decrypt($request->user));
 
                 $getChatOfferData=PriceNegotiation::with('priceNegotiationOfAds','offeredUser','replayUser')->orderBy('price_negotiations.id','DESC')
                     ->where(['request_to'=>Auth::user()->id,'request_by'=>decrypt($request->user), 'ad_post_id'=>$adDetails->id])
-                    ->get();
+                    ->limit(100)->get();
 
                 $offerUsers=PriceNegotiation::leftJoin('users','price_negotiations.request_by','users.id')
                     //->select('users.name','users.id')

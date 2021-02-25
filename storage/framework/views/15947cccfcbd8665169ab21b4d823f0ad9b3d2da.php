@@ -11,8 +11,8 @@
                 <div id="locationResult">
 
                 </div>
+                <a id="showDefaultLocation" style="display: none;background-color: #663e4c;text-align: center;" href="javascript:void(0)" style="background-color: #663e4c;text-align: center;"> X </a>
 
-                <a id="showDefaultLocation" style="display: none;background-color: #663e4c;text-align: center;" href="javascript:void(0)" style="background-color: #663e4c;text-align: center;"> Show Location </a>
 
 
                 <div id="defaultLocation">

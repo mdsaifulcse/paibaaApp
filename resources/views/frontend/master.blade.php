@@ -37,7 +37,7 @@
 
     <script>
 
-        $('#findLocation').on('click',function () {
+        $('#locationKeyword').on('keyup',function () {
             if ($('#locationKeyword').val()===''){
                 return false
             }else {
@@ -48,7 +48,7 @@
                 }
                 $('#locationResult').empty().load('{{URL::to("search-nav-location")}}/'+category+'?locationKeyword='+$('#locationKeyword').val());
                 $('#locationResult').show()
-                $('#defaultLocation').hide()
+                //$('#defaultLocation').hide()
                 $('#showDefaultLocation').show()
             }
 
@@ -66,7 +66,7 @@
 
     <script>
 
-        $('#findCategory').on('click',function () {
+        $('#catKeywords').on('keyup',function () {
             if ($('#catKeywords').val()===''){
                 return false
             }else {
@@ -76,7 +76,9 @@
                     category='no-sub-cat';
                 }
 
-                $('#categoryResult').load('{{URL::to("search-nav-sub-category")}}/'+category+'?catKeyword='+$('#catKeywords').val());
+                var location="<?php echo Request::segment(2)?>"
+
+                $('#categoryResult').load('{{URL::to("search-nav-sub-category")}}/'+category+'?catKeyword='+$('#catKeywords').val()+'&location='+location);
 
                 $('#categoryResult').show()
                 $('#defaultCategory').hide()

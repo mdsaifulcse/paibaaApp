@@ -1,11 +1,11 @@
 <div class="dashboard_menu">
     <div class="dashbord_img">
-        <div class="dashboard_back"> <img class="img-fluid w-100" src="<?php echo e(asset('/frontend')); ?>/images/dash-background.png" alt="Classified Plus"> </div>
+        <div class="dashboard_back"> <img class="img-fluid w-100" src="<?php echo e(asset('/frontend')); ?>/images/dash-background.png" alt="<?php echo e(Auth::user()->name); ?>"> </div>
         <div class="rounded_img">
             <?php if(!empty(Auth::user()->image)): ?>
-            <img class="img-fluid" src="<?php echo e(asset(Auth::user()->image)); ?>" alt="Classified Plus">
+            <img class="img-fluid" src="<?php echo e(asset(Auth::user()->image)); ?>" alt="<?php echo e(Auth::user()->name); ?>">
                 <?php else: ?>
-                <img class="img-fluid" src="<?php echo e(asset('/')); ?>images/default/photo.png" alt="Classified Plus">
+                <img class="img-fluid" src="<?php echo e(asset('/')); ?>images/default/photo.png" alt="<?php echo e(Auth::user()->name); ?>">
 
             <?php endif; ?>
         </div>
@@ -16,6 +16,8 @@
         
         <li class=" <?php if(Request::path()=='my-ads'): ?> active <?php else: ?> '' <?php endif; ?> "><span><i class="fa fa-database"></i></span><a href="<?php echo e(URL::to('/my-ads')); ?>"> My Ads </a></li>
         <li class=" <?php if(Request::path()=='ad-post/create'): ?> active <?php else: ?> '' <?php endif; ?> "><span><i class="fa fa-database"></i></span><a href="<?php echo e(URL::to('/ad-post')); ?>"> Post New Ad </a></li>
+        <li class=" <?php if(Request::path()=='my-sent-request'): ?> active <?php else: ?> '' <?php endif; ?> "><span><i class="fa fa-database"></i></span><a href="<?php echo e(URL::to('/my-sent-request')); ?>"> My Sent Request </a></li>
+        <li class=" <?php if(Request::path()=='my-client-request'): ?> active <?php else: ?> '' <?php endif; ?> "><span><i class="fa fa-database"></i></span><a href="<?php echo e(URL::to('/my-client-request')); ?>"> My Client Request </a></li>
         <li class=" <?php if(Request::path()=='my-profile'): ?> active <?php else: ?> '' <?php endif; ?> "><span><i class="fa fa-cog"></i></span><a href="<?php echo e(URL::to('/my-profile')); ?>"> Profile Settings </a></li>
         <li class=" <?php if(Request::path()=='change-my-username'): ?> active <?php else: ?> '' <?php endif; ?> "><span><i class="fa fa-cog"></i></span><a href="<?php echo e(URL::to('/change-my-username')); ?>"> Set Username </a></li>
         <li><span><i class="fa fa-sign-in"></i></span><a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logoutForm').submit()"> Logout </a></li>

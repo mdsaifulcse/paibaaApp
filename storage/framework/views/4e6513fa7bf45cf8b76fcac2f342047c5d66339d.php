@@ -265,8 +265,19 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" class="buttons login_btn" name="login" value="Continue">Send Request </button>
+                                        <?php if(Auth::check() && Auth::user()->status==0): ?>
 
+                                            <p class="text-center m-b-10">
+                                                <span class="text-danger">Your profile is not complete, Please complete</span>
+                                                <a href="<?php echo e(URL::to('my-profile')); ?>" class="price-request"> Profile </a>
+                                            </p>
+
+                                            <?php $submit='button'?>
+                                        <?php else: ?>
+                                            <?php $submit='submit'?>
+                                                <button type="<?php echo e($submit); ?>" class="buttons login_btn" name="login" value="Continue">Send Request </button>
+
+                                        <?php endif; ?>
                                     </div>
 
                                     <?php echo Form::close(); ?>
@@ -454,8 +465,21 @@
                                         </div><!-- end row -->
                                         <div class="form-group">
 
-                                            <button type="submit" class="buttons login_btn"
-                                                    name="login" value="Continue" onclick="return confirm('Please Check Again') ">Submit <?php echo e($adDetails->postCategory->order_label); ?> </button>
+                                            <?php if(Auth::check() && Auth::user()->status==0): ?>
+
+                                                <p class="text-center m-b-10">
+                                                    <span class="text-danger">Your profile is not complete, Please complete</span>
+                                                    <a href="<?php echo e(URL::to('my-profile')); ?>" class="price-request"> Profile </a>
+                                                </p>
+
+                                                <?php $submit='button'?>
+                                            <?php else: ?>
+                                                <?php $submit='submit'?>
+                                                    <button type="<?php echo e($submit); ?>" class="buttons login_btn"
+                                                            name="login" value="Continue" onclick="return confirm('Please Check Again') ">Submit <?php echo e($adDetails->postCategory->order_label); ?> </button>
+                                            <?php endif; ?>
+
+
 
                                         </div>
 

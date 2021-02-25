@@ -26,7 +26,7 @@
     </div>
 
     <div id="showDefaultCategory" style="display: none">
-        <a href="javascript:void(0)" style="background-color: #663e4c;text-align: center;"> Show category </a>
+        <a href="javascript:void(0)" style="background-color: #663e4c;text-align: center;"> <i class="fa fa-angle-double-left"></i> Go Back </a>
     </div>
 
     <div id="defaultCategory">

@@ -96,6 +96,8 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="{{URL::to('/profile/'.Auth::user()->user_name)}}">Public Profile</a></li>
                                         <li><a href="{{URL::to('/my-ads')}}">My Ads</a></li>
+                                        <li><a href="{{URL::to('/my-sent-request')}}">My Sent Request</a></li>
+                                        <li><a href="{{URL::to('/my-client-request')}}">My Client Request</a></li>
                                         <li><a href="{{URL::to('/my-profile')}}">Profile Setting</a></li>
                                         <li><a class="nav-link1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a></li>
                                     </ul>

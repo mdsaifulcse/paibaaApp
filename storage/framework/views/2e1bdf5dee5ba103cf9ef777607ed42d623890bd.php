@@ -1,7 +1,13 @@
-<?php $__env->startSection('title'); ?> My All Ad | Khojlei Paibaa | Shob Paibaa  <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> My Sent Request | Khojlei Paibaa | Shob Paibaa  <?php $__env->stopSection(); ?>
 
 
 <?php $__env->startSection('content'); ?>
+
+    <style>
+        td{
+            white-space: normal !important;
+        }
+    </style>
 
     <!-- breadcrumb -->
     <div class="iner_breadcrumb bg-light p-t-10 p-b-10">
@@ -9,7 +15,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo e(URL::to('/')); ?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">My Ads</li>
+                    <li class="breadcrumb-item active" aria-current="page">Client Request</li>
                 </ol>
             </nav>
         </div>
@@ -29,84 +35,59 @@
 
                     <div class="dashboard_main">
                         <div class="dashboard_heding">
-                            <h3> My All Ads </h3>
+                            <h3> My Sent Request </h3>
                         </div>
-                        
-                            
-                                
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                
-                            
-                        
                         <div class="row m-t-15">
                             <div id="recent-transactions" class="col-12"> <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements"> </div>
-                                <div class="table">
-                                    <table class="table table-bordered table-xl mb-0 table-responsive">
+                                <div class="table table-responsive">
+                                    <table class="table table-xl table-bordered mb-0 table-responsive">
                                         <thead>
                                         <tr>
-                                            <th class="border-top text-capitalize ml-44">
-                                                
-                                                photos
-                                            </th>
-                                            <th class="border-top text-capitalize">title </th>
-                                            <th class="border-top text-capitalize">category </th>
-                                            <th class="border-top text-capitalize">ad status </th>
-                                            <th class="border-top text-capitalize">price </th>
-                                            <th class="border-top text-capitalize">action</th>
+
+                                            <th class="border-top text-capitalize">Sl</th>
+                                            <th class="border-top text-capitalize" width="50%">Message </th>
+                                            <th class="border-top text-capitalize">Related Ad </th>
+                                            <th class="border-top text-capitalize">Request to </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php if(count($adPost)>0): ?>
-                                        <?php $__currentLoopData = $adPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if(count($mySentRequests)>0): ?>
+                                        <?php $__currentLoopData = $mySentRequests; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key =>$data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
+                                            <td class="text-truncate"><?php echo e($key+1); ?></td>
+                                            <td class="text-truncate"><a href="<?php echo e(url('/ad/'.$data->priceNegotiationOfAds->link.'?user='.encrypt($data->request_to).'&offer='.encrypt($data->offer))); ?>"><?php echo e($data->request_message); ?></a>
+                                            </td>
+
+                                            <td class="text-truncate">
+                                                <a href="<?php echo e(url('/ad/'.$data->priceNegotiationOfAds->link.'?user='.encrypt($data->request_to).'&offer='.encrypt($data->offer))); ?>"><p><?php echo e($data->priceNegotiationOfAds->title); ?></p></a>
+                                                </td>
+
                                             <td class="text-truncate">
                                                 <div class="form-check">
                                                     
                                                     <div class="recent_img" style="width: 60px;">
-                                                        <?php if(file_exists('images/post_photo/small/'.$data->postPhoto->photo_one)): ?>
-                                                            <img class="img-fluid rounded-top" src="<?php echo e(asset('images/post_photo/small/'.$data->postPhoto->photo_one)); ?>" alt="<?php echo e($data->title); ?>" title="<?php echo e($data->title); ?>">
+                                                        <a href="<?php echo e(url('/ad/'.$data->priceNegotiationOfAds->link.'?user='.encrypt($data->request_to).'&offer='.encrypt($data->offer))); ?>">
+                                                            <?php if(!empty($data->replayUser->image)): ?>
+                                                                <img class="img-fluid rounded-top" src="<?php echo e(asset($data->replayUser->image)); ?>" alt="<?php echo e($data->replayUser->name); ?>" title="<?php echo e($data->replayUser->name); ?>">
 
-                                                        <?php else: ?>
-                                                            <img class="img-fluid rounded-top" src="<?php echo e(asset('/images/default/photo.png')); ?>" alt="<?php echo e($data->title); ?>" title="<?php echo e($data->title); ?>">
-                                                        <?php endif; ?>
+                                                            <?php else: ?>
+                                                                <img class="img-fluid rounded-top" src="<?php echo e(asset('/images/default/photo.png')); ?>" alt="<?php echo e($data->replayUser->name); ?>" title="<?php echo e($data->replayUser->name); ?>">
+                                                            <?php endif; ?>
+
+                                                            <span><?php echo e($data->replayUser->name); ?></span>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="text-truncate"><p><?php echo e($data->title); ?></p></td>
-                                            <td class="text-truncate"><?php echo e($data->postCategory->category_name); ?></td>
-                                            <td>
-                                                <?php if($data->status==1 && $data->is_approved==1): ?>
-                                                <button type="button" class="btn btn-sm active_btn">Active</button>
-                                                    <?php else: ?>
-                                                    <button type="button" class="btn btn-sm btn-warning" title="Your ad is pending or Inactive">Inactive</button>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="text-truncate"><strong><?php echo e($data->price); ?></strong></td>
-                                            <td class="text-truncate">
-                                                <?php echo Form::open(array('route' => ['ad-post.destroy',$data->id],'method'=>'DELETE','id'=>"deleteForm$data->id")); ?>
 
-
-                                                <span>
-                                                <button type="button" value="butten"><a href="<?php echo e(URL::to('ad-post/'.$data->id.'/edit')); ?>" title="Click here to edit this ad">  <i class="fa fa-pencil"></i> </a>  </button>
-                                                </span>
-
-                                                <span>
-                                                <button type="button" value="butten" onclick='return deleteConfirm("deleteForm<?php echo e($data->id); ?>")' title="Click here to delete this ad">  <i class="fa fa-trash"></i></button>
-                                                </span>
-
-                                                <?php echo Form::close(); ?>
-
-
-
-                                            </td>
                                         </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php else: ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Client Request Found !</td>
+                                            </tr>
+
                                             <?php endif; ?>
 
                                         </tbody>
@@ -117,7 +98,7 @@
                     </div>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center m-t-20 m-b-50">
-                            <?php echo e($adPost->render()); ?>
+                            <?php echo e($mySentRequests->render()); ?>
 
                         </ul>
                     </nav>
@@ -219,4 +200,4 @@
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('frontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\paibaApp\resources\views/frontend/adPost/my-ads.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\paibaApp\resources\views/frontend/client-request/my-sent-request.blade.php ENDPATH**/ ?>

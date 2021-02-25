@@ -100,6 +100,12 @@
                             <div class="form-group has-feedback">
                                 {{Form::password('password',['class'=>'form-control only-border-bottom','placeholder'=>'Password *','min'=>8,'required'=>true])}}
 
+                                @if ($errors->has('mobile'))
+                                    <span class="help-block">
+                                        <strong class="text-danger">{{ $errors->first('mobile') }}</strong>
+                                    </span>
+                                @endif
+
                             </div>
                         </div>
 

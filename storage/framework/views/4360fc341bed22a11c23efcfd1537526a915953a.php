@@ -62,6 +62,8 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo e(URL::to('/profile/'.Auth::user()->user_name)); ?>">Public Profile</a></li>
                                         <li><a href="<?php echo e(URL::to('/my-ads')); ?>">My Ads</a></li>
+                                        <li><a href="<?php echo e(URL::to('/my-sent-request')); ?>">My Sent Request</a></li>
+                                        <li><a href="<?php echo e(URL::to('/my-client-request')); ?>">My Client Request</a></li>
                                         <li><a href="<?php echo e(URL::to('/my-profile')); ?>">Profile Setting</a></li>
                                         <li><a class="nav-link1" href="<?php echo e(url('/logout')); ?>" onclick="event.preventDefault(); document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a></li>
                                     </ul>
